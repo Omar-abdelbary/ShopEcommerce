@@ -1,0 +1,239 @@
+@if ( ProductDetails()) {
+
+
+<section class="product-list">
+  <div class="container">
+    <div class="col-12">
+      <div class="product-list-head">
+        <h3>Product Details:</h3>
+      </div>
+    </div>
+
+
+    <div class="product-info">
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 col-md-6">
+          <div class="img-product">
+
+            <owl-carousel-o [options]="customOptions">
+
+
+
+              @for (img of productImages(); track $index) {
+
+              <ng-template carouselSlide>
+
+                <img [src]="img.image_url" alt="img product" class="img-fluid">
+
+
+              </ng-template>
+              }
+
+
+
+
+
+
+
+            </owl-carousel-o>
+
+          </div>
+        </div>
+
+
+        <div class="col-lg-6 col-sm-12 col-md-6">
+          <div class="product-details">
+            <h3><span>name:</span>{{ProductDetails()?.name}}</h3>
+            <p><span>description:</span> {{ProductDetails()?.description?.slice(0 , 40)}}</p>
+            <p><span>brands:</span> {{ProductDetails()?.brand}}</p>
+            <div class="d-flex  ">
+              <p><span>price:</span> {{ProductDetails()?.price | currency : "GBP"}}</p>
+              <div class="rating ">
+                @for (num of [1,2,3,4,5].slice(0 , ProductDetails()?.average_rating); track $index) {
+                <i class="fa-solid fa-star rating-color"></i>
+                }
+                @if ( (ProductDetails()?.average_rating ?? 0) % 1 !== 0) {
+                <i class="fa-solid fa-star-half-stroke   rating-color"></i>
+                }
+                <span>{{ProductDetails()?.average_rating}}</span>
+              </div>
+            </div>
+
+
+            <button class="btn btn-danger"> AddToCart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col-12">
+      <div class="review-about">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 col-md-6 order-lg-1 order-2  ">
+            <div class="review-title">
+              <h4>Customer Reviews:</h4>
+            </div>
+
+
+            <div class="rating-summary">
+              ⭐ <strong>{{ averageRating() }}</strong>
+              <span>({{ reviewItems()?.length }} reviews)</span>
+            </div>
+
+
+            <!-- Add Review Form -->
+            <div class="add-review-form">
+              <h4>📝 Add Your Review</h4>
+
+              <form [formGroup]="addReviewForm" (ngSubmit)="addReviewSubmit()">
+                <div class="form-info">
+                  <input type="number" min="1" max="5" placeholder="Rating (1–5)" formControlName="rating" [ngClass]="{
+                    'is-valid' : !addReviewForm.get('rating')?.errors && (addReviewForm.get('rating')?.touched ||addReviewForm.get('rating')?.dirty) ,
+                    'is-invalid' : addReviewForm.get('rating')?.errors && (addReviewForm.get('rating')?.touched ||addReviewForm.get('rating')?.dirty)
+                  }">
+
+                  @if (addReviewForm.get("rating")?.errors && addReviewForm.get("rating")?.touched) {
+
+                  <div class="alert alert-danger">
+
+                    @if (addReviewForm.get("rating")?.getError("required")) {
+                    <p>Rating is required.</p>
+                    }
+
+                    @else if (addReviewForm.get("rating")?.getError("min")) {
+                    <p>Minimum allowed rating is 1.</p>
+                    }
+
+                    @else if (addReviewForm.get("rating")?.getError("max")) {
+                    <p>Maximum allowed rating is 5.</p>
+                    }
+
+                    @else if (addReviewForm.get("rating")?.getError("pattern")) {
+                    <p>Rating must be a number (up to 2 decimal places).</p>
+                    }
+                  </div>
+                  }
+                </div>
+
+                <div class="form-info">
+                  <textarea rows="3" placeholder="Write your comment..." formControlName="comment" [ngClass]="{
+                    'is-valid' : !addReviewForm.get('comment')?.errors && (addReviewForm.get('comment')?.touched ||addReviewForm.get('comment')?.dirty) ,
+                    'is-invalid' : addReviewForm.get('comment')?.errors && (addReviewForm.get('comment')?.touched ||addReviewForm.get('comment')?.dirty)
+                  }"></textarea>
+
+
+
+                  @if (addReviewForm.get("comment")?.errors && addReviewForm.get("comment")?.touched) {
+
+
+                  <div class="alert alert-danger">
+
+
+                    @if (addReviewForm.get("comment")?.getError("required")) {
+                    <p>Comment is required.</p>
+                    }
+
+                    @else if (addReviewForm.get("comment")?.getError("minlength")) {
+                    <p> Comment must be at least 5 characters long.</p>
+                    }
+
+                    @else if (addReviewForm.get("comment")?.getError("maxlength")) {
+                    <p>Comment cannot exceed 100 characters.</p>
+                    }
+
+                  </div>
+                  }
+                </div>
+
+
+                <button type="submit" class="btn btn-danger">Submit</button>
+              </form>
+            </div>
+          </div>
+
+
+
+
+          <div class="col-12">
+            <div class="review-all-items p-4 rounded-3 shadow-sm bg-white  ">
+
+              <div class="review-head mb-4 d-flex justify-content-between align-items-center border-bottom pb-2">
+                <h5 class="fw-bold text-primary mb-0"> All product reviews</h5>
+                <span class="text-muted small"> Total reviews: {{ reviewItems()?.length }}</span>
+              </div>
+
+              <!-- لو مفيش تعليقات -->
+              @if (reviewItems()?.length === 0) {
+              <p class="text-center text-secondary mt-3"> No reviews yet 😅</p>
+              }
+
+              <!-- عرض التعليقات -->
+              <div class="review-list mt-3 ">
+                @for (review of reviewItems(); track review.review_id) {
+                <div class="review-item border-bottom py-3 d-flex justify-content-between align-items-start flex-wrap mb-3">
+                  <div class="review-content flex-grow-1">
+                    <p class="mb-1 fw-semibold text-dark">id:{{ review.review_id }}</p>
+                    <p class="mb-2 text-muted small">{{ review.created_at| date:'medium' }}</p>
+                    @for (num of [1,2,3,4,5].slice(0 , review.rating); track $index) {
+                    <i class="fa-solid fa-star rating-color"></i>
+                    }
+
+                    <p class="mb-0">comment:{{ review.comment }}</p>
+                  </div>
+
+                  <div class="review-actions d-flex align-items-center gap-2 mt-2 mt-md-0">
+                    <button class="btn btn-sm btn-outline-primary" aria-label="Edit review"
+                      (click)="editReview(review.review_id)">
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" aria-label="Delete review"
+                      (click)="deleteReview(review.review_id)">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+                }
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</section>
+
+
+}

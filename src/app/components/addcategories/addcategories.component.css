@@ -1,0 +1,106 @@
+
+.add-categories {
+  width: 100%;
+  height: auto;
+}
+
+.add-categories .add-categories-info  {
+
+  width: 50%;
+  height: auto;
+  margin: auto;
+   background-color: rgba(138, 51, 253, 0.1);
+    border-radius: 5px;
+     border: 1px solid rgba(138, 51, 253, 0.2) ;
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-top: 100px !important;
+}
+
+.add-categories .add-categories-info  .add-categories-heading {
+  width: 100%;
+  height: auto;
+}
+
+.add-categories .add-categories-info .add-categories-heading h5 {
+    color: #8A33FD;
+  text-align: center;
+  padding-top: 12px;
+  font-size: 20px;
+  text-decoration: underline;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+.add-categories .add-categories-info .form {
+  width: 100%;
+  height: auto;
+}
+
+.add-categories .add-categories-info .form .form-info {
+  margin-bottom: 12px;
+}
+
+
+.add-categories .add-categories-info .form .form-info label {
+  width: 100%;
+  height: auto;
+  color: #8A33FD;
+  padding-left: 10px;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.add-categories .add-categories-info .form .form-info .form-control {
+  width: 95%;
+  height: auto;
+  margin-left: 10px;
+  background-color: rgba(138, 51, 253, 0.05);
+}
+
+.add-categories .add-categories-info .form .btn {
+  background-color: #8A33FD;
+  color: aliceblue;
+  margin-bottom: 50px;
+  margin-left: 20px;
+  margin-top: 25px;
+}
+
+
+
+.add-categories .add-categories-info .form .form-info .alert {
+
+   width: 95%;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
+  margin-left: 10px;
+  margin-top: 2px;
+}
+
+.add-categories .add-categories-info .form .form-info .alert p {
+  padding-left: 10px;
+  padding-top: 8px;
+  font-size: 15px;
+}
+
+
+@media (max-width:767px) {
+
+  .add-categories .add-categories-info  {
+
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+}
+
+
+
+@media (min-width:768px)and (max-width:1023px) {
+
+    .add-categories .add-categories-info  {
+
+  width: 100%;
+}
+
+}

@@ -1,0 +1,42 @@
+@if (AdminData()) {
+
+
+<section class="admin-card">
+  <div class="container">
+
+    <div class="admin-header">
+      <i class="fa-solid fa-user-shield"></i>
+      <h2>Admin Profile</h2>
+    </div>
+
+    <div class="admin-info">
+      <div class="info-item">
+        <span class="label">ID</span>
+        <span class="value">{{ AdminData()?.admin_id }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Name</span>
+        <span class="value">{{ AdminData()?.name }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Email</span>
+        <span class="value email">{{ AdminData()?.email }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Permissions</span>
+        <span class="value permission">{{ AdminData()?.permissions }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Created At</span>
+        <span class="value">{{ AdminData()?.created_at | date: 'medium' }}</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+}

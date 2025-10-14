@@ -1,0 +1,66 @@
+
+
+
+.categories {
+  width: 100%;
+  height: auto;
+   background-color: aliceblue;
+}
+
+
+.categories .categories-head {
+  width: 100%;
+  height: auto;
+}
+
+.categories .categories-head h3 {
+  color: rebeccapurple;
+  font-size: 25px;
+  text-decoration: underline;
+  padding-top: 35px;
+  margin-bottom: 35px;
+}
+
+
+.categories .all-categories {
+  width: 100%;
+  height: auto;
+}
+
+.categories .all-categories .category-details {
+  border: 1px solid rebeccapurple;
+  border-radius: 10px;
+  padding: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:  ease all 1s;
+  margin-bottom: 15px;
+}
+
+.categories .all-categories .category-details .img-fluid {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition:  ease all 1s;
+  margin-bottom: 10px;
+}
+
+
+.categories .all-categories .category-details:hover .img-fluid {
+    transform: rotate(4deg);
+  transition: transform 0.3s ease;
+}
+
+
+.categories .all-categories .category-details h5 {
+  text-align: center ;
+  color: rebeccapurple;
+  font-size: 20px;
+
+}
+
+.categories .all-categories .category-details p {
+  color: rebeccapurple;
+  font-size: 17px;
+  text-align: center;
+}

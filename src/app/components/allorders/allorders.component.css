@@ -1,0 +1,168 @@
+
+
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+}
+.all-orders {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin-bottom: 150px;
+}
+
+
+
+.all-orders .all-orders-head h5 {
+  text-align: center;
+  padding-top: 100px;
+  color: #2563eb;
+  font-size: 20px;
+  text-decoration: underline;
+  margin-bottom: 25px;
+}
+
+.table-wrapper {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #f5f6fa;
+  &::after {
+    --shadow-size: 20px;
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* box-shadow: inset 0 calc(var(--shadow-size) * -1) var(--shadow-size) calc(var(--shadow-size) * -1) rgb(0 0 0 / 0.35); */
+    pointer-events: none;
+  }
+}
+
+.table-container {
+  max-height: 24rem;
+  /* overflow: auto; */
+  overflow-x: scroll !important;
+  height: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate; /* make border sticky */
+
+}
+
+th,
+td {
+  border: none;
+  padding: 1rem 2rem;
+  text-align: left;
+
+  &:last-of-type {
+    text-align: right;
+  }
+}
+
+th {
+  background-color: rgba(138, 51, 253, 0.1);
+  color: #8A33FD;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid rgba(138, 51, 253, 0.2) ;
+}
+
+
+
+tbody tr {
+   transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+tbody tr:hover {
+    background-color: rgba(138, 51, 253, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transform: scale(1.01);
+}
+
+
+
+
+@media (min-width:768px)and (max-width:1023px) {
+    .all-orders .container  {
+
+  overflow: hidden !important;
+  max-width: 630px !important;
+
+}
+
+
+
+}
+
+
+
+@media (max-width:767px) {
+
+
+  .all-orders .container  {
+
+  overflow: hidden !important;
+  max-width: 485px;
+
+}
+
+}
+
+
+
+
+
+
+.my-swal-popup {
+  background: rgba(25, 25, 25, 0.85); /* خلفية شفافة غامقة */
+  border: 2px solid rgba(255, 255, 255, 0.15); /* بوردر ناعم */
+  border-radius: 16px; /* حواف دائرية */
+  backdrop-filter: blur(10px); /* تأثير الزجاج */
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5); /* ظل جميل */
+  color: #fff; /* لون الكتابة */
+  transition: all 0.3s ease-in-out; /* حركة ناعمة */
+}
+
+.my-swal-popup:hover {
+  transform: translateY(-5px) scale(1.02); /* لما تقرب الماوس تطلع لفوق شوية */
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.15); /* يزيد التأثير */
+}
+
+.swal2-title {
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #ffcc00; /* لون العنوان */
+  margin-bottom: 10px;
+}
+
+.swal2-html-container {
+  font-size: 16px;
+  color: #eee;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.swal2-confirm {
+  background-color: #3085d6 !important; /* لون الزر */
+  border-radius: 8px !important;
+  padding: 8px 20px !important;
+  font-weight: 500 !important;
+  transition: background 0.3s ease-in-out !important;
+}
+
+.swal2-confirm:hover {
+  background-color: #2563eb !important; /* لما يقرب الماوس يتغير اللون */
+}
+
+
+
+

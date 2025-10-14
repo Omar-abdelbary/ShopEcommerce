@@ -1,0 +1,45 @@
+
+ @if (UserData()) {
+
+
+<section class="user-card">
+  <div class="container">
+
+    <div class="user-header">
+      <i class="fa-solid fa-user-tie"></i>
+      <h2>user Profile</h2>
+    </div>
+
+    <div class="user-info">
+      <div class="info-item">
+        <span class="label">ID</span>
+        <span class="value">{{ UserData()?.user_id}}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Name</span>
+        <span class="value">{{ UserData()?.name }}</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Email</span>
+        <span class="value email">{{ UserData()?.email }}</span>
+      </div>
+
+
+
+      <div class="info-item">
+        <span class="label">Created At</span>
+        <span class="value">{{ UserData()?.created_at | date: 'medium' }}</span>
+      </div>
+
+
+      <div class="change-pass">
+        <button class="btn btn-danger"  routerLink="/changepass"> change Password?</button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+}

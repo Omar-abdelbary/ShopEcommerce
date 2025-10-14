@@ -1,0 +1,130 @@
+
+
+
+
+.user-card {
+  width: 90%;
+  max-width: 450px;
+  margin: 40px auto;
+  margin-top: 100px;
+  /* background: #ffffff; */
+  background-color: rgba(138, 51, 253, 0.1);
+   /* background-color: aliceblue; */
+  border: 1px solid rgba(138, 51, 253, 0.2) ;
+  border-radius: 20px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.user-header {
+  /* background: linear-gradient(135deg, #007bff, #00a8ff); */
+  background: linear-gradient(135deg, rgba(138, 51, 253, 1), rgba(99, 102, 241, 1));
+  color: #fff;
+  text-align: center;
+  padding: 25px 15px;
+}
+
+.user-header i {
+  font-size: 38px;
+  margin-bottom: 8px;
+}
+
+.user-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.user-info {
+  padding: 25px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.label {
+  color: #555;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.value {
+  color: #222;
+  font-weight: 600;
+  font-size: 15px;
+  word-break: break-word;
+}
+
+.permission {
+  background-color: #007bff1a;
+  color: #007bff;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+.email {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+/* 🌐 Responsive Design */
+@media (max-width: 768px) {
+  .user-card {
+    width: 95%;
+    margin: 20px auto;
+    margin-top: 100px;
+  }
+
+  .user-header h2 {
+    font-size: 20px;
+  }
+
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .label {
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  .value {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-card {
+    border-radius: 15px;
+  }
+
+  .user-header {
+    padding: 20px 10px;
+  }
+
+  .user-header i {
+    font-size: 32px;
+  }
+
+  .user-info {
+    padding: 18px;
+  }
+}

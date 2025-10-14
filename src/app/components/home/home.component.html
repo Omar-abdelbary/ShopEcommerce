@@ -1,0 +1,329 @@
+<section class="home">
+  <div class="container-fluid">
+
+    <div class="slider">
+      <div class="col-lg-12 col-sm-12.col-md-12">
+        <div class="img-list">
+          <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide><img src="./assets/img/home1.avif" class="img-fluid" alt=""></ng-template>
+            <ng-template carouselSlide><img src="./assets/img/home2.avif" class="img-fluid" alt=""></ng-template>
+            <ng-template carouselSlide><img src="./assets/img/home3.avif" class="img-fluid" alt=""></ng-template>
+            <ng-template carouselSlide><img src="./assets/img/home4.avif" class="img-fluid" alt=""></ng-template>
+            <ng-template carouselSlide><img src="./assets/img/home5.avif" class="img-fluid" alt=""></ng-template>
+            <ng-template carouselSlide><img src="./assets/img/home6.avif" class="img-fluid" alt=""></ng-template>
+          </owl-carousel-o>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="slider-arrival">
+      <div class="col-12">
+        <div class="slider-head">
+          <h3>New Arrival</h3>
+        </div>
+      </div>
+
+      <div class="col-lg-12 col-sm-12.col-md-12">
+        <div class="img-list">
+          <owl-carousel-o [options]="customOptionsNew">
+            <ng-template carouselSlide><img src="./assets/img/new1.avif" class="img-fluid" alt=""></ng-template>
+            <ng-template carouselSlide><img src="./assets/img/new2.avif" class="img-fluid" alt=""></ng-template>
+            <ng-template carouselSlide><img src="./assets/img/new3.avif" class="img-fluid" alt=""></ng-template>
+            <ng-template carouselSlide><img src="./assets/img/new4.avif" class="img-fluid" alt=""></ng-template>
+            <ng-template carouselSlide><img src="./assets/img/new5.avif" class="img-fluid" alt=""></ng-template>
+            <ng-template carouselSlide><img src="./assets/img/new6.avif" class="img-fluid" alt=""></ng-template>
+          </owl-carousel-o>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <div class="categories">
+      <div class="col-12">
+        <div class="categories-head">
+          <h3>Popular Categories :</h3>
+        </div>
+      </div>
+
+
+      <div class="categories-info">
+
+
+        <owl-carousel-o [options]="customOptionsCategories">
+
+
+          @for (item of AllCategories(); track item.category_id) {
+          <ng-template carouselSlide>
+            <div class="category-details" [routerLink]="['/category' , item.category_id]">
+              <img [src]="item.image_url" [alt]="item.description">
+              <p>{{item.name}}</p>
+            </div>
+          </ng-template>
+          }
+
+
+        </owl-carousel-o>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="products-info">
+      <div class="col-12">
+        <div class="products-head">
+          <h5>Popular Products:</h5>
+        </div>
+      </div>
+
+
+      <div class="products">
+        <div class="row">
+          @for (product of AllProducts().slice(0 , 16); track product.product_id) {
+          <div class="col-lg-3 col-sm-12 col-md-3">
+            <div class="product-details">
+              <img [src]="product.main_image" class="img-fluid" [alt]="">
+
+              <h4>{{product.name}}</h4>
+              <p>{{product.brand}}</p>
+              <p>{{product.price | currency:"GBP"}}</p>
+
+              <!-- الأيقونات -->
+              <div class="product-actions">
+
+                <button title="Add to Wishlist" (click)="additemWishlist(product.product_id)"><i
+                    class="fas fa-heart"></i></button>
+                <button title="View Details" [routerLink]="['/product' , product.product_id]">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="sale-items">
+      <div class="col-12">
+        <div class="sale-items-head">
+          <h6>SaleItems:</h6>
+        </div>
+      </div>
+
+
+
+      <div class="sale-items-info">
+        <div class="row">
+          @for (item of AllItems(); track  item.product_id) {
+            <div class="col-lg-3 col-sm-12 col-md-4">
+          <div class="item">
+            <img [src]="item.product.main_image" class="img-fluid" alt="">
+            <h3>{{item.product.name}}</h3>
+            <p>{{item.product.description.slice(0 , 20)}}</p>
+            <!-- <button class="btn"> AddToCart</button> -->
+
+            <div class="sale-info">
+              <span>{{item.discount_percent | currency: "GBP"}}</span>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+          }
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="brands">
+      <div class="col-12">
+        <div class="brands-head">
+          <h6>Top Brands Deal</h6>
+          <p>Up To 60% off on brands</p>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-3 col-sm-6 col-md-3">
+          <div class="img">
+            <img src="../../../assets/img/Group 43.png" class="img-fluid" alt="">
+
+          </div>
+        </div>
+
+
+        <div class="col-lg-3 col-sm-6 col-md-3">
+          <div class="img">
+            <img src="../../../assets/img/Group 44.png" class="img-fluid" alt="">
+
+          </div>
+        </div>
+
+
+        <div class="col-lg-3 col-sm-6 col-md-3">
+          <div class="img">
+            <img src="../../../assets/img/Group 46.png" class="img-fluid" alt="">
+
+          </div>
+        </div>
+
+
+
+        <div class="col-lg-3 col-sm-6 col-md-3">
+          <div class="img">
+            <img src="../../../assets/img/Group 45.png" class="img-fluid" alt="">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+</section>

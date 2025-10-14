@@ -1,0 +1,132 @@
+
+
+.register {
+  width: 100%;
+  height: auto;
+}
+
+.register .register-info {
+  width: 50%;
+  height: auto;
+  margin: auto;
+   background-color: rgba(138, 51, 253, 0.1);
+    border-radius: 5px;
+     border: 1px solid rgba(138, 51, 253, 0.2) ;
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+
+.register .register-info .register-head h5 {
+  padding-top: 20px;
+  margin-left: 12px;
+  color: #8A33FD;
+  font-size: 22px;
+}
+
+.register .register-info .register-head p {
+  color: #8A33FD;
+  font-size: 14px;
+  margin-left: 12px;
+
+}
+
+.register .register-info .form {
+  margin-top: 25px;
+}
+.register .register-info  .form .form-info {
+  margin-bottom: 10px;
+}
+.register .register-info  .form .form-info label {
+  color: #8A33FD !important;
+  margin-left: 12px;
+  font-size: 17px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.register .register-info  .form .form-info  .form-control {
+  width: 95%;
+  margin-left: 12px;
+  background-color: rgba(138, 51, 253, 0.05);
+   border: 1px solid rgba(138, 51, 253, 0.2);
+  border-radius: 6px;
+
+}
+
+.register .register-info .form .btn-submit-info {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.register .register-info .form .btn-submit-info a {
+  list-style-type: none;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 12px;
+  margin-right: 12px;
+  color: #8A33FD;
+
+}
+
+
+.register .register-info .form .login {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.register .register-info .form .login .btn {
+  background-color: #8A33FD;
+  color: aliceblue;
+  margin-left: 30px;
+  margin-bottom: 50px;
+  margin-right: 12px;
+  /* font-size: 15px; */
+}
+
+
+.register .register-info .form .form-info .alert {
+  width: 95%;
+  height: auto;
+  margin-left: 12px;
+  font-size: 14px;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  margin-top: 3px;
+}
+
+@media (max-width:767px) {
+
+  .register .register-info {
+  width: 100% ;
+}
+
+.register .register-info .form .login .btn {
+  background-color: #8A33FD;
+  color: aliceblue;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
+}
+
+
+@media (min-width:768px) and (max-width:1023px) {
+
+
+  .register {
+    overflow: hidden !important;
+  }
+
+    .register .register-info {
+  width: 100% ;
+  overflow: hidden !important;
+    }
+
+}

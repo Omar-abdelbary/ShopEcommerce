@@ -1,0 +1,70 @@
+<section class="change-pass">
+  <div class="container">
+
+
+
+    <form class="form" [formGroup]="changePassForm" (ngSubmit)="changePassSubmit()">
+
+
+      <div class="form-head">
+        <h3>ChangePassword:</h3>
+      </div>
+
+
+      <div class="form-info">
+        <label for="oldpass">OldPassword:</label>
+        <input type="password" id="oldpass" class="form-control" placeholder="enter old pass here "
+          formControlName="oldPassword" [ngClass]="{
+          'is-valid' : !changePassForm.get('oldPassword')?.errors &&  (changePassForm.get('oldPassword')?.touched ||changePassForm.get('oldPassword')?.dirty) ,
+          'is-invalid' : changePassForm.get('oldPassword')?.errors && (changePassForm.get('oldPassword')?.touched ||changePassForm.get('oldPassword')?.dirty)
+        }">
+
+        @if (changePassForm.get("oldPassword")?.errors && changePassForm.get("oldPassword")?.touched) {
+
+        <div class="alert alert-danger">
+
+          @if (changePassForm.get("oldPassword")?.getError("required")) {
+          <p> Old password is required</p>
+          }
+
+          @else if(changePassForm.get("oldPassword")?.getError("pattern")) {
+
+          <p>Password must be at least 6 digits</p>
+
+          }
+        </div>
+        }
+      </div>
+
+
+      <div class="form-info">
+        <label for="newpass">NewPassword:</label>
+        <input type="password" id="newpass" class="form-control" placeholder="enter new pass here "
+          formControlName="newPassword" [ngClass]="{
+          'is-valid' : !changePassForm.get('newPassword')?.errors &&  (changePassForm.get('newPassword')?.touched ||changePassForm.get('newPassword')?.dirty) ,
+          'is-invalid' : changePassForm.get('newPassword')?.errors && (changePassForm.get('newPassword')?.touched ||changePassForm.get('newPassword')?.dirty)
+        }">
+
+
+
+        @if (changePassForm.get("newPassword")?.errors && changePassForm.get("newPassword")?.touched) {
+
+        <div class="alert alert-danger">
+
+          @if (changePassForm.get("newPassword")?.getError("required")) {
+          <p> New password is required</p>
+          }
+
+          @else if(changePassForm.get("newPassword")?.getError("pattern")) {
+
+          <p>Password must be at least 6 digits</p>
+
+          }
+        </div>
+        }
+      </div>
+
+      <button class="btn  btn-success">Submit</button>
+    </form>
+  </div>
+</section>

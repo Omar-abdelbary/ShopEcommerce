@@ -1,0 +1,35 @@
+
+
+@if (CategoryDetails) {
+
+
+<section class="category-details">
+  <div class="container">
+
+    <div class="col-12">
+      <div class="category-head text-center mt-5">
+      <h5>Category Details:</h5>
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-sm-12 col-md-6">
+        <div class="img-category">
+          <img [src]="CategoryDetails.image_url" class="img-fluid" [alt]="CategoryDetails.description">
+        </div>
+      </div>
+
+
+      <div class="col-lg-6 col-sm-12 col-md-6">
+        <div class="category-info">
+          <h2>name: {{CategoryDetails.name}}</h2>
+          <p>description: {{CategoryDetails.description}}</p>
+          <p>category_id: {{CategoryDetails.category_id}}</p>
+          <p>created_at: {{CategoryDetails.created_at | date}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+}

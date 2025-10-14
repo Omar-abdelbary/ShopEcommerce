@@ -1,0 +1,137 @@
+
+
+
+
+.login {
+  width: 100%;
+  height: auto;
+   background-color: aliceblue;
+   padding-bottom: 50px;
+   padding-top: 1px;
+}
+
+.login .login-info {
+  width: 50%;
+  height: auto;
+  margin: auto;
+   background-color: rgba(138, 51, 253, 0.1);
+    border-radius: 5px;
+     border: 1px solid rgba(138, 51, 253, 0.2) ;
+     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-top: 20px;
+  /* margin-bottom: 50px; */
+}
+
+
+.login .login-info .login-head h5 {
+  padding-top: 20px;
+  margin-left: 12px;
+  color: #8A33FD;
+  font-size: 22px;
+}
+
+.login .login-info .login-head p {
+  color: #8A33FD;
+  font-size: 14px;
+  margin-left: 12px;
+
+}
+
+.login .login-info .form {
+  margin-top: 25px;
+}
+.login .login-info  .form .form-info {
+  margin-bottom: 10px;
+}
+.login .login-info  .form .form-info label {
+  color: #8A33FD !important;
+  margin-left: 12px;
+  font-size: 17px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.login .login-info  .form .form-info  .form-control {
+  width: 95%;
+  margin-left: 12px;
+  background-color: rgba(138, 51, 253, 0.05);
+   border: 1px solid rgba(138, 51, 253, 0.2);
+  border-radius: 6px;
+
+}
+
+.login .login-info .form .btn-submit-info {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.login .login-info .form .btn-submit-info a {
+  list-style-type: none;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 12px;
+  margin-right: 12px;
+  color: #8A33FD;
+
+}
+
+
+.login .login-info .form .forget-btn  .btn {
+  background-color: #8A33FD;
+  color: aliceblue;
+  margin-left: 30px;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+
+.login .login-info .form .form-info .alert {
+  width: 95%;
+  height: auto;
+  margin-left: 12px;
+  font-size: 14px;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  margin-top: 3px;
+}
+
+
+.login .login-info .form .forget-btn {
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+
+.login .login-info .form .forget-btn a {
+  margin-left: 12px;
+  margin-top: 20px;
+  font-size: 17px;
+  margin-right: 10px;
+}
+@media (max-width:767px) {
+
+  .login .login-info {
+  width: 100% ;
+}
+
+}
+
+
+@media (min-width:768px) and (max-width:1023px) {
+
+
+  .login {
+    overflow: hidden !important;
+  }
+
+    .login .login-info {
+  width: 100% ;
+  overflow: hidden !important;
+    }
+
+}

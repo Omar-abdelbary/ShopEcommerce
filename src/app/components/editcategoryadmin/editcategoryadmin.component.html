@@ -1,0 +1,100 @@
+<section class="edit-category">
+  <div class="container">
+
+
+
+    <form class="form"   [formGroup]="EditCategoryForm" (ngSubmit)="EditCategorySubmit()">
+
+      <div class="form-head">
+        <h3>Edit Category:</h3>
+      </div>
+
+      <div class="form-info">
+        <label for="name">name:</label>
+        <input type="text" id="name"  class="form-control" placeholder="enter name here ." formControlName="name" [ngClass]="{
+          'is-valid' :!EditCategoryForm.get('name')?.errors && (EditCategoryForm.get('name')?.touched || EditCategoryForm.get('name')?.dirty) ,
+          'is-invalid' : EditCategoryForm.get('name')?.errors && (EditCategoryForm.get('name')?.touched || EditCategoryForm.get('name')?.dirty)
+        }">
+
+
+        @if (EditCategoryForm.get("name")?.errors && EditCategoryForm.get("name")?.touched) {
+
+          <div class="alert alert-danger">
+
+            @if(EditCategoryForm.get("name")?.getError("required")) {
+              <p>Name is required.</p>
+            }
+
+            @else if (EditCategoryForm.get("name")?.getError("minlength")) {
+              <p>Name must be at least 3 characters long.</p>
+            }
+
+
+            @else if (EditCategoryForm.get("name")?.getError("maxlength")) {
+              <p>Name cannot exceed 20 characters.</p>
+            }
+          </div>
+        }
+      </div>
+
+
+
+      <div class="form-info">
+        <label for="description">description:</label>
+        <textarea name="enter description here" placeholder="enter description here" id="description" class="form-control" formControlName="description"  [ngClass]="{
+          'is-valid' : !EditCategoryForm.get('description')?.errors && (EditCategoryForm.get('description')?.touched ||EditCategoryForm.get('description')?.dirty) ,
+          'is-invalid' : EditCategoryForm.get('description')?.errors && (EditCategoryForm.get('description')?.touched ||EditCategoryForm.get('description')?.dirty)
+        }"></textarea>
+
+
+        @if (EditCategoryForm.get("description")?.errors && EditCategoryForm.get("description")?.touched) {
+
+          <div class="alert alert-danger">
+
+
+            @if (EditCategoryForm.get("description")?.getError("required")) {
+              <p>Description is required.</p>
+            }
+
+            @else if (EditCategoryForm.get("description")?.getError("minlength")) {
+              <p>Description must be at least 10 characters long.</p>
+            }
+
+            @else if (EditCategoryForm.get("description")?.getError("maxlength")) {
+              <p>Description cannot exceed 200 characters.</p>
+            }
+          </div>
+        }
+      </div>
+
+
+
+
+
+      <div class="form-info">
+        <label for="imgurl">imgurl:</label>
+        <input type="text" id="imgurl" class="form-control" placeholder="enter imgurl here  ." formControlName="image_url" [ngClass]="{
+          'is-valid' : !EditCategoryForm.get('image_url')?.errors && (EditCategoryForm.get('image_url')?.touched ||EditCategoryForm.get('image_url')?.dirty) ,
+          'is-invalid' : EditCategoryForm.get('image_url')?.errors && (EditCategoryForm.get('image_url')?.touched ||EditCategoryForm.get('image_url')?.dirty)
+        }">
+
+
+        @if (EditCategoryForm.get("image_url")?.errors && EditCategoryForm.get("image_url")?.touched) {
+
+          <div class="alert alert-danger">
+
+            @if (EditCategoryForm.get("image_url")?.getError("required")) {
+              <p>Image URL is required.</p>
+            }
+
+            @else if (EditCategoryForm.get("image_url")?.getError("pattern")) {
+              <p>Please enter a valid image URL</p>
+            }
+          </div>
+        }
+      </div>
+
+      <button class="btn "> Save Edit</button>
+    </form>
+  </div>
+</section>

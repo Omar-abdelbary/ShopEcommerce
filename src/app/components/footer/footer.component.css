@@ -1,0 +1,103 @@
+
+
+.end-content {
+  width: 100%;
+  height: auto;
+  background-color: #3C4242;
+  /* background-color: rgb(240, 243, 242); */
+  overflow: hidden !important;
+  /* color: black !important; */
+
+}
+
+
+.end-content .end-content-info-list {
+  width: 100%;
+  height: auto;
+}
+
+.end-content .end-content-info-list .end-content-list h6 {
+  color: #fff;
+  margin-top: 50px;
+  font-size: 18px;
+  margin-bottom: 13px;
+  padding-left: 28px;
+}
+
+.end-content .end-content-info-list .end-content-list ul {
+  color: #fff;
+}
+
+.end-content .end-content-info-list .end-content-list ul li {
+  margin-bottom: 6px;
+}
+
+.end-content .end-content-info-list .end-content-list ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+.end-content .end-content-info-social-link {
+  width: 100%;
+  height: auto;
+}
+
+
+.end-content .end-content-info-social-link .social-link a {
+  cursor: pointer;
+  padding: 7px;
+  margin: 0px 6px 0px 6px;
+  font-size: 19px;
+  color: #fff;
+}
+
+.end-content .end-content-info-social-link .down-load-head h6 {
+  font-size: 16px;
+}
+
+
+.end-content .end-content-info-social-link .download-app-info .img-fluid {
+  width: 30%;
+  height: auto;
+  cursor: pointer;
+}
+
+
+
+
+@media (max-width:767px) {
+
+  .end-content .end-content-info-list .row .col-sm-6 {
+    width: 50%;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .end-content .end-content-info-social-link .social-link {
+    margin-bottom: 20px;
+  }
+
+  .end-content .end-content-info-social-link .download-app-info .img-fluid {
+  width: 45% ;
+  margin-bottom: 20px;
+}
+
+}
+
+
+
+@media (min-width:768px) and (max-width:1023px) {
+
+  .end-content {
+    overflow: hidden !important;
+  }
+
+    .end-content .end-content-info-social-link .download-app-info .img-fluid {
+  width: 45% ;
+  margin-bottom: 20px;
+}
+
+}

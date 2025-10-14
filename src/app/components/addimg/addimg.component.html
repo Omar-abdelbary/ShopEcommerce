@@ -1,0 +1,35 @@
+<section class="add-img">
+  <div class="container">
+    <div class="col-12">
+      <div class="add-img-head">
+        <h3>Add Img: </h3>
+      </div>
+    </div>
+
+
+
+    <form class="form" [formGroup]="addImgForm" (ngSubmit)="Add()">
+    <div class="form-info">
+      <label for="link">ImgUrl:</label>
+      <input type="text" id="link" class="form-control" formControlName="image_url">
+
+      @if (addImgForm.get("image_url")?.errors && addImgForm.get("image_url")?.touched) {
+        <div class="alert alert-danger">
+
+          @if (addImgForm.get("image_url")?.getError("required")) {
+            <p>this is required. </p>
+          }
+
+          @if (addImgForm.get("image_url")?.getError("pattern")) {
+            <p>Please enter a valid image URL</p>
+          }
+        </div>
+      }
+  </div>
+
+  <input type="hidden" formControlName="is_main" >
+
+  <button class="btn  "> Submit</button>
+  </form>
+  </div>
+</section>

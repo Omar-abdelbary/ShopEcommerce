@@ -1,0 +1,48 @@
+
+
+@if (Allproducts()) {
+  <section class="products-about">
+  <div class="container">
+    <div class="col-12">
+      <div class="product-head">
+        <h3>Allproduct:</h3>
+        <button class="btn btn-primary" routerLink="/addproduct">Add Product</button>
+      </div>
+    </div>
+
+
+    <div class="all-products">
+      <div class="row">
+        @for (product of Allproducts(); track product.product_id) {
+        <div class="col-lg-2 col-sm-12 col-md-4">
+          <div class="product">
+            <img [src]="product.main_image" class="img-fluid" alt="">
+            <h5>{{product.name.slice(0 , 10)}}</h5>
+            <p>{{product.brand}}</p>
+            <p>{{product.price}}</p>
+
+            <div class="links">
+              <button class="link-btn" title="view product">
+                <i class="fa-solid fa-eye"  [routerLink]="['/viewproduct' , product.product_id]"></i>
+              </button>
+              <button class="link-btn" title="update product">
+                <i class="fa-solid fa-pen-to-square"  [routerLink]="['/editproduct' , product.product_id]"></i>
+              </button>
+
+              <button class="link-btn" title="delete product">
+                <i class="fa-solid fa-trash" (click)="delete(product.product_id)"></i>
+              </button>
+
+              <button class="link-btn" title="add img for product">
+                <i class="fa-solid fa-camera-retro"  [routerLink]="['/addimg' , product.product_id]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+}

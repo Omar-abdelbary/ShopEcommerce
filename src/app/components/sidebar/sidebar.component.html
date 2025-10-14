@@ -1,0 +1,23 @@
+<!-- زرار يظهر بس في الموبايل، خارج Sidebar -->
+<div class="top-bar d-md-none p-2 border-bottom bg-light position-fixed w-100" style="z-index: 1100;">
+  <button class="btn btn-outline-primary" (click)="toggleSidebar()">☰</button>
+</div>
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar bg-light border-end " [class.open]="sidebarOpen || !isMobile">
+  <div class="sidebar-heading p-3 mt-md-0 mt-5">
+    <img src="./assets/img/Logo.png" class="logo" alt="Logo">
+  </div>
+  <ul class="list-unstyled px-2">
+    <li><a routerLink="/adminproducts" routerLinkActive="active-component" (click)="closeSidebarOnLinkClick()">🛍 Products</a></li>
+    <li><a routerLink="/categoriesAdmin" routerLinkActive="active-component" (click)="closeSidebarOnLinkClick()">📦 Categories</a></li>
+    <li><a routerLink="/allorders" routerLinkActive="active-component"  (click)="closeSidebarOnLinkClick()">👁️ All Orders</a></li>
+    <li><a routerLink="/saleitems" routerLinkActive="active-component"  (click)="closeSidebarOnLinkClick()"><i class="fa-solid fa-fire"></i> SaleItems</a></li>
+    <li><a routerLink="/admindata" routerLinkActive="active-component"  (click)="closeSidebarOnLinkClick()"><i class="fa-solid fa-user me-2"></i> MyProfile</a></li>
+  </ul>
+
+
+
+
+  <button class="btn" (click)="this._AuthService.logout()"> <i class="fa-solid fa-right-from-bracket"></i>Log out</button>
+</div>

@@ -1,0 +1,114 @@
+<section class="register">
+  <div class="container">
+
+
+    <div class="register-info">
+      <div class="col-12">
+        <div class="register-head">
+          <h5>Sign Up: </h5>
+          <p>Sign up for free to access to in any of our products. </p>
+        </div>
+      </div>
+
+
+      <form class="form" [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+
+
+        <div class="form-info">
+          <label for="name">FullName:</label>
+          <input type="text" id="name" class="form-control" placeholder="enter your full name here .."
+            formControlName="name" [ngClass]="{
+              'is-valid' : !registerForm.get('name')?.errors && (registerForm.get('name')?.touched ||registerForm.get('name')?.dirty),
+              'is-invalid' : registerForm.get('name')?.errors && (registerForm.get('name')?.touched ||registerForm.get('name')?.dirty)
+            }">
+
+
+            @if (registerForm.get("name")?.errors && registerForm.get("name")?.touched) {
+              <div class="alert alert-danger">
+                @if (registerForm.get("name")?.getError("required")) {
+                  <p>FullName is required.</p>
+                }
+
+                @else if (registerForm.get("name")?.getError("minlength")) {
+                  <p>FullName must be at least 5 characters</p>
+                }
+
+                @else if (registerForm.get("name")?.getError("maxlength")) {
+                  <p>FullName cannot exceed 20 characters</p>
+                }
+              </div>
+            }
+        </div>
+
+
+
+        <div class="form-info">
+          <label for="email">Email:</label>
+          <input type="email" id="email" class="form-control" placeholder="enter your email here "
+            formControlName="email" [ngClass]="{
+              'is-valid' : !registerForm.get('email')?.errors && (registerForm.get('email')?.touched ||registerForm.get('email')?.dirty),
+              'is-invalid' : registerForm.get('email')?.errors && (registerForm.get('email')?.touched ||registerForm.get('email')?.dirty)
+            }">
+
+
+            @if (registerForm.get("email")?.errors && registerForm.get("email")?.touched) {
+              <div class="alert alert-danger">
+                @if (registerForm.get("email")?.getError("required")) {
+                  <p>Email is required</p>
+                }
+
+                @else if (registerForm.get("email")?.getError("email")) {
+                  <p>Please enter a valid email</p>
+                }
+
+
+                @else if (registerForm.get("email")?.getError("pattern")) {
+                  <p>Email must be a &#64;gmail.com address</p>
+                }
+              </div>
+            }
+        </div>
+
+
+
+        <div class="form-info">
+          <label for="password">Password:</label>
+          <input type="password" id="password" class="form-control" placeholder="enter your password here .."
+           formControlName="password" [ngClass]="{
+            'is-valid' : !registerForm.get('password')?.errors && (registerForm.get('password')?.touched ||registerForm.get('password')?.dirty) ,
+            'is-invalid' : registerForm.get('password')?.errors && (registerForm.get('password')?.touched ||registerForm.get('password')?.dirty)
+           }">
+
+
+          @if (registerForm.get("password")?.errors && registerForm.get("password")?.touched) {
+            <div class="alert alert-danger">
+              @if (registerForm.get("password")?.getError("required")) {
+                <p>Password is required</p>
+              }
+
+
+              @else if (registerForm.get("password")?.getError("pattern")) {
+                <p>Password must be at least 6 digits</p>
+              }
+            </div>
+          }
+        </div>
+
+
+
+
+        <div class="btn-submit-info">
+          <a routerLink="/loginUser"> Log in as user?</a>
+          <a routerLink="/loginAdmin"> Login As Admin ?</a>
+        </div>
+
+        <div class="login d-flex">
+           <button class="btn" type="submit">Sign Up</button>
+          <button class="btn"  type="button" (click)="loginGoogle()"> <i class="fa-brands fa-google"></i>Login With Google</button>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</section>

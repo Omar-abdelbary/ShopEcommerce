@@ -1,0 +1,104 @@
+<section class="add-categories">
+  <div class="container">
+
+
+    <div class="add-categories-info">
+      <div class="col-12">
+        <div class="add-categories-heading">
+          <h5>AddCategories:</h5>
+        </div>
+      </div>
+
+      <form class="form" [formGroup]="addCategoriesForm" (ngSubmit)="AddCategoriesSubmit()">
+
+
+        <div class="form-info">
+          <label for="name">Name:</label>
+          <input type="text" id="name" class="form-control" placeholder="enter your nameCategories" [ngClass]="{
+            'is-valid' : !addCategoriesForm.get('name')?.errors && (addCategoriesForm.get('name')?.touched ||addCategoriesForm.get('name')?.dirty) ,
+            'is-invalid' : addCategoriesForm.get('name')?.errors && (addCategoriesForm.get('name')?.touched ||addCategoriesForm.get('name')?.dirty)
+          }" formControlName="name">
+
+          @if (addCategoriesForm.get("name")?.errors && addCategoriesForm.get("name")?.touched) {
+          <div class="alert alert-danger">
+
+            @if (addCategoriesForm.get("name")?.getError("required")) {
+            <p>Name is required.</p>
+            }
+
+            @else if (addCategoriesForm.get("name")?.getError("minlength")) {
+            <p>Name must be at least 5 characters.</p>
+            }
+
+
+            @else if (addCategoriesForm.get("name")?.getError("maxlength")) {
+            <p> Name cannot exceed 25 characters.</p>
+            }
+          </div>
+          }
+        </div>
+
+
+        <div class="form-info">
+          <label for="description">description</label>
+          <input type="text" id="description" class="form-control" placeholder="enter your descriptionCategories "
+            [ngClass]="{
+            'is-valid' : !addCategoriesForm.get('description')?.errors && (addCategoriesForm.get('description')?.touched ||addCategoriesForm.get('description')?.dirty) ,
+            'is-invalid' : addCategoriesForm.get('description')?.errors && (addCategoriesForm.get('description')?.touched ||addCategoriesForm.get('description')?.dirty)
+          }" formControlName="description">
+
+
+          @if (addCategoriesForm.get("description")?.errors && addCategoriesForm.get("description")?.touched) {
+          <div class="alert alert-danger">
+
+            @if (addCategoriesForm.get("description")?.getError("required")) {
+            <p>Description is required.</p>
+            }
+
+            @else if (addCategoriesForm.get("description")?.getError("minlength")) {
+            <p>Description must be at least 5 characters.</p>
+            }
+
+            @else if (addCategoriesForm.get("description")?.getError("maxlength")) {
+            <p>Description cannot exceed 30 characters.</p>
+            }
+          </div>
+          }
+        </div>
+
+
+
+        <div class="form-info">
+          <label for="img-url">ImgUrl : </label>
+          <input type="text" id="img-url" class="form-control" placeholder="enter urm img here categories" [ngClass]="{
+            'is-valid' : !addCategoriesForm.get('image_url')?.errors && (addCategoriesForm.get('image_url')?.touched ||addCategoriesForm.get('image_url')?.dirty) ,
+            'is-invalid' : addCategoriesForm.get('image_url')?.errors && (addCategoriesForm.get('image_url')?.touched ||addCategoriesForm.get('image_url')?.dirty)
+          }" formControlName="image_url">
+
+
+
+          @if (addCategoriesForm.get("image_url")?.errors && addCategoriesForm.get("image_url")?.touched) {
+          <div class="alert alert-danger">
+
+            @if (addCategoriesForm.get("image_url")?.getError("required")) {
+            <p>Image URL is required.</p>
+            }
+
+            @else if (addCategoriesForm.get("image_url")?.getError("pattern")) {
+            <p>Please enter a valid image URL (png, jpg, jpeg, gif, webp, svg).</p>
+            }
+          </div>
+          }
+        </div>
+
+
+        <button class="btn" type="submit">Submit</button>
+      </form>
+
+
+
+    </div>
+
+
+  </div>
+</section>

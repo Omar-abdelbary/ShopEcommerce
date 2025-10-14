@@ -1,0 +1,134 @@
+
+
+.sale-item {
+  width: 100%;
+  height: auto;
+   background-color: aliceblue;
+
+}
+
+.sale-item .sale-item-head h3 {
+  padding-top: 25px;
+  text-decoration: underline;
+  color: rebeccapurple;
+}
+
+.sale-item .all-items {
+  width: 100%;
+  height: auto;
+  margin-top: 25px;
+}
+
+.sale-item .all-items .item {
+  border: 1px solid rebeccapurple;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border-radius: 15px;
+
+}
+
+.sale-item .all-items .item .img-fluid {
+  height: 250px !important;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  transition:  ease all 1s ;
+}
+
+.sale-item .all-items .item:hover .img-fluid {
+  transform: scale(0.9);
+}
+
+.sale-item .all-items .item h3 {
+  color: rebeccapurple;
+  font-size: 18px;
+  font-weight: bold;
+
+}
+
+
+.sale-item .all-items .item p {
+  color: rebeccapurple;
+  font-size: 16px;
+
+
+}
+
+
+.sale-item .all-items .item .btn {
+
+     width: 70%;
+  transform: translateY(150%);
+  transition: transform 0.7s;
+  background-color: rebeccapurple;
+  padding: 7px 20px;
+  /* margin-left: 50px; */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.sale-item .all-items .item:hover .btn {
+
+  transform: translateY(0);
+
+}
+
+
+
+.sale-item .all-items .item .sale-info {
+  position: absolute;
+  top: 12px;
+  left: -40px;
+  background-color: crimson;
+  color: #fff;
+  padding: 5px 50px;
+  font-weight: bold;
+  font-size: 14px;
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: rotate(-45deg) scale(1);
+  }
+  50% {
+    transform: rotate(-45deg) scale(1.1);
+  }
+}
+
+
+
+@media (max-width:767px) {
+
+.sale-item .all-items .item .img-fluid {
+  height: auto !important;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  transition:  ease all 1s ;
+}
+
+}
+
+
+@media (min-width:768px)and (max-width:1023px) {
+
+  .sale-item .all-items .item .img-fluid {
+  height: 200px !important;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  transition:  ease all 1s ;
+}
+
+}

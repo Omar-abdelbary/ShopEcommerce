@@ -1,0 +1,64 @@
+
+
+@if (Allorders()) {
+
+
+  <section class="all-orders">
+  <div class="container">
+
+    <div class="col-12">
+      <div class="all-orders-head  ">
+        <h5>Allorders:</h5>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="table-wrapper">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                        <th>Payment</th>
+                        <th>Created</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+
+                    @for (order of Allorders(); track order.order_id) {
+                    <tr (click)="showOrderDetails(order.order_id)">
+                        <td>{{ order.order_id }}</td>
+                        <td>{{ order.user_id }}</td>
+                        <td>
+                            <span >{{ order.status }}</span>
+                        </td>
+                        <td>{{ order.total_amount | currency:"GBP" }}</td>
+                        <td>{{ order.payment_status }}</td>
+                        <td>{{ order.created_at | date:'medium' }}</td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+</section>
+
+}

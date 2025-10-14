@@ -1,0 +1,166 @@
+<section class="add-product">
+  <div class="container">
+    <div class="col-lg-12">
+      <div class="add-product-head">
+        <h5>AddProduct:</h5>
+      </div>
+    </div>
+
+
+
+    <div class="col-12">
+      <form class="form"    [formGroup]="AddProductForm" (ngSubmit)="AddProductSubmit()">
+
+
+
+        <div class="form-info">
+          <label for="name">name:</label>
+          <input type="text" id="name" class="form-control" placeholder="enter name here." formControlName="name" [ngClass]="{
+            'is-valid': !AddProductForm.get('name')?.errors && (AddProductForm.get('name')?.touched ||AddProductForm.get('name')?.dirty) ,
+            'is-invalid' : AddProductForm.get('name')?.errors && (AddProductForm.get('name')?.touched ||AddProductForm.get('name')?.dirty)
+          }">
+
+          @if (AddProductForm.get("name")?.errors && AddProductForm.get("name")?.touched) {
+            <div class="alert alert-danger">
+              @if (AddProductForm.get("name")?.getError("required")) {
+                <p>Name is required and cannot be empty.</p>
+              }
+
+              @else if (AddProductForm.get("name")?.getError("minlength")) {
+                <p>Name is too short, please enter more characters.</p>
+              }
+
+              @else if (AddProductForm.get("name")?.getError("maxlength")) {
+                <p>Name is too long, please shorten it.</p>
+              }
+            </div>
+          }
+        </div>
+
+
+
+        <div class="form-info">
+          <label for="description"> description:</label>
+          <input type="text" id="description" class="form-control" placeholder="enter description here ." formControlName="description"
+            [ngClass]="{
+              'is-valid': !AddProductForm.get('description')?.errors && (AddProductForm.get('description')?.touched ||AddProductForm.get('description')?.dirty) ,
+              'is-invalid' : AddProductForm.get('description')?.errors && (AddProductForm.get('description')?.touched ||AddProductForm.get('description')?.dirty)
+            }">
+
+
+          @if (AddProductForm.get("description")?.errors && AddProductForm.get("description")?.touched) {
+
+            <div class="alert alert-danger">
+
+              @if (AddProductForm.get("description")?.getError("required")) {
+                <p>Description is required and cannot be empty.</p>
+              }
+
+
+              @else if (AddProductForm.get("description")?.getError("minlength")) {
+                <p>Description is too short, please provide more details.</p>
+              }
+
+              @else if (AddProductForm.get("description")?.getError("maxlength")) {
+                <p>Description is too long, please shorten it.</p>
+              }
+            </div>
+          }
+        </div>
+
+
+
+        <div class="form-info">
+          <label for="price">price:</label>
+          <input type="number" id="price"  class="form-control" placeholder="enter price here ."  formControlName="price" [ngClass]="{
+            'is-valid' : !AddProductForm.get('price')?.errors && (AddProductForm.get('price')?.touched ||AddProductForm.get('price')?.dirty) ,
+            'is-invalid' :  AddProductForm.get('price')?.errors && (AddProductForm.get('price')?.touched ||AddProductForm.get('price')?.dirty)
+          }" >
+
+          @if (AddProductForm.get("price")?.errors && AddProductForm.get("price")?.touched) {
+
+            <div class="alert alert-danger">
+
+
+              @if (AddProductForm.get("price")?.getError("required")) {
+                <p>Price is required and cannot be empty.</p>
+              }
+
+              @else if (AddProductForm.get("price")?.getError("pattern")) {
+                <p>Please enter a valid price (numbers only, no letters or special characters).</p>
+              }
+            </div>
+          }
+        </div>
+
+
+        <div class="form-info">
+          <label for="category_id"> category_id:</label>
+          <input type="number" id="category_id" class="form-control " placeholder="enter category_id here ."  formControlName="category_id"   [ngClass]=" {
+            'is-valid' : !AddProductForm.get('category_id')?.errors && (AddProductForm.get('category_id')?.touched ||AddProductForm.get('category_id')?.dirty) ,
+
+            'is-invalid' : AddProductForm.get('category_id')?.errors && (AddProductForm.get('category_id')?.touched ||AddProductForm.get('category_id')?.dirty)
+          }">
+
+
+          @if (AddProductForm.get("category_id")?.errors && AddProductForm.get("category_id")?.touched) {
+
+            <div class="alert alert-danger">
+
+              @if (AddProductForm.get("category_id")?.getError("required")) {
+                <p>Category ID is required and cannot be empty.</p>
+              }
+
+              @else if (AddProductForm.get("category_id")?.getError("pattern")) {
+                <p>Please enter a valid Category ID (positive integer, no zero, no decimals).</p>
+              }
+            </div>
+          }
+        </div>
+
+
+        <div class="form-info">
+          <label for="brand">brand:</label>
+          <input type="text" id="brand" class="form-control" placeholder="enter name brands here ." formControlName="brand"  [ngClass]="{
+            'is-valid' : !AddProductForm.get('brand')?.errors && (AddProductForm.get('brand')?.touched ||AddProductForm.get('brand')?.dirty) ,
+
+            'is-invalid' : AddProductForm.get('brand')?.errors && (AddProductForm.get('brand')?.touched ||AddProductForm.get('brand')?.dirty)
+          }">
+
+
+
+          @if (AddProductForm.get("brand")?.errors && AddProductForm.get("brand")?.touched) {
+
+            <div class="alert alert-danger">
+
+              @if (AddProductForm.get("brand")?.getError("required")) {
+                <p>Brand name is required and cannot be empty.</p>
+              }
+
+
+              @else if (AddProductForm.get("brand")?.getError("minlength")) {
+                <p>Brand name is too short, please enter more characters.</p>
+              }
+
+              @else if (AddProductForm.get("brand")?.getError("maxlength")) {
+                <p>Brand name is too long, please shorten it.</p>
+              }
+            </div>
+          }
+        </div>
+
+
+
+        <button class="btn" type="submit">Submit</button>
+      </form>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+</section>

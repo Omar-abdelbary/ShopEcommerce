@@ -1,0 +1,231 @@
+@if (productInfo) {
+<section class="product-info">
+  <div class="container">
+
+
+    <div class="col-12">
+      <div class="product-info-heading">
+        <h3>productDetails:</h3>
+      </div>
+    </div>
+
+
+
+
+    <div class="col-12">
+      <div class="product">
+        <div class="row">
+
+
+
+          <div class="col-lg-6 col-sm-12 col-md-12">
+            <div class="img-slider">
+              <owl-carousel-o [options]="customOptions">
+
+
+                @for (img of productImages(); track $index) {
+                <ng-template carouselSlide>
+                  <img [src]="img.image_url" class="img-fluid" alt="img product">
+                </ng-template>
+                }
+
+
+
+              </owl-carousel-o>
+            </div>
+          </div>
+
+
+
+
+          <div class="col-lg-6 col-sm-12 col-md-12">
+            <div class="product-about">
+              <h6>name:{{productInfo.name.slice (0, 15)}}</h6>
+
+
+              <p>description: {{productInfo.description.slice(0,35)}}</p>
+
+
+              <p>{{productInfo.brand}}</p>
+
+              <div class="  product-details d-flex    ">
+                <span> {{productInfo.price|currency:"GBP" }} </span>
+                <div class="rating ">
+                  @for (num of [1,2,3,4,5].slice(0 , productInfo.average_rating); track $index) {
+                  <i class="fa-solid fa-star rating-color"></i>
+                  }
+                  @if (productInfo.average_rating % 1 !== 0) {
+                  <i class="fa-solid fa-star-half-stroke   rating-color"></i>
+                  }
+                  <span class="text-muted">{{productInfo.average_rating}}</span>
+                </div>
+              </div>
+
+              <p>{{productInfo.created_at | date}} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="col-12">
+      <div class="review-all-items p-4 rounded-3 shadow-sm bg-white">
+
+        <div class="review-head mb-4 d-flex justify-content-between align-items-center border-bottom pb-2">
+          <h5 class="fw-bold text-primary mb-0">   All product reviews</h5>
+          <span class="text-muted small"> Total reviews: {{ AllReview()?.length }}</span>
+        </div>
+
+
+        @if (AllReview()?.length === 0) {
+        <p class="text-center text-secondary mt-3">  No reviews yet  😅</p>
+        }
+
+
+        <div class="review-list mt-3">
+          @for (review of AllReview(); track review.review_id) {
+          <div class="review-item border-bottom py-3 d-flex justify-content-between align-items-start flex-wrap">
+            <div class="review-content flex-grow-1">
+              <p class="mb-1 fw-semibold text-dark">{{ review.review_id }}</p>
+              <p class="mb-2 text-muted small">{{ review.created_at| date:'medium' }}</p>
+              <p class="mb-0">{{ review.comment }}</p>
+            </div>
+
+            <div class="review-actions d-flex align-items-center gap-2 mt-2 mt-md-0">
+              <button class="btn btn-sm btn-outline-primary" aria-label="Edit review" (click)="editReview()" >
+                <i class="fa-solid fa-pen"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-danger" aria-label="Delete review" >
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+          }
+        </div>
+
+      </div>
+    </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</section>
+
+}

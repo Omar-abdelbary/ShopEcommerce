@@ -1,0 +1,24 @@
+{
+  "routes": [
+    "/",
+    "/addcategory",
+    "/addproduct",
+    "/admindata",
+    "/adminproducts",
+    "/allorders",
+    "/allproducts",
+    "/cart",
+    "/categories",
+    "/categoriesAdmin",
+    "/changepass",
+    "/discountitems",
+    "/forgetpassword",
+    "/home",
+    "/loginAdmin",
+    "/loginUser",
+    "/register",
+    "/saleitems",
+    "/userdata",
+    "/wishlist"
+  ]
+}

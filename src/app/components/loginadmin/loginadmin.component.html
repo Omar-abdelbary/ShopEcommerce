@@ -1,0 +1,114 @@
+<section class="login">
+  <div class="container">
+
+
+
+
+ <div class="login-info">
+      <div class="col-12">
+        <div class="login-head">
+          <h5>Admin Dashboard Login  </h5>
+
+        </div>
+      </div>
+
+
+      <form class="form"  [formGroup]="loginAsAdminForm" (ngSubmit)="loginAdminSubmit()" >
+
+
+
+
+
+        <div class="form-info">
+          <label for="email">Email:</label>
+          <input type="email" id="email" class="form-control" placeholder="enter your email here "
+            formControlName="email" [ngClass]="{
+              'is-valid' : !loginAsAdminForm.get('email')?.errors && (loginAsAdminForm.get('email')?.touched ||loginAsAdminForm.get('email')?.dirty) ,
+              'is-invalid' : loginAsAdminForm.get('email')?.errors && (loginAsAdminForm.get('email')?.touched ||loginAsAdminForm.get('email')?.dirty)
+            }">
+
+
+            @if (loginAsAdminForm.get("email")?.errors && loginAsAdminForm.get("email")?.touched) {
+              <div class="alert alert-danger">
+                @if (loginAsAdminForm.get("email")?.getError("required")) {
+                  <p>Email is required</p>
+                }
+
+                @else if (loginAsAdminForm.get("email")?.getError("email")) {
+                  <p>Please enter a valid email</p>
+                }
+
+
+                @else if (loginAsAdminForm.get("email")?.getError("pattern")) {
+                  <p>Email must be a &#64;gmail.com address</p>
+                }
+              </div>
+            }
+        </div>
+
+
+
+        <div class="form-info">
+          <label for="password">Password:</label>
+          <input type="password" id="password" class="form-control" placeholder="enter your password here .."
+           formControlName="password" [ngClass]="{
+              'is-valid' : !loginAsAdminForm.get('password')?.errors && (loginAsAdminForm.get('password')?.touched ||loginAsAdminForm.get('password')?.dirty) ,
+              'is-invalid' : loginAsAdminForm.get('password')?.errors && (loginAsAdminForm.get('password')?.touched ||loginAsAdminForm.get('password')?.dirty)
+            }">
+
+
+          @if (loginAsAdminForm.get("password")?.errors && loginAsAdminForm.get("password")?.touched) {
+            <div class="alert alert-danger">
+              @if (loginAsAdminForm.get("password")?.getError("required")) {
+                <p>Password is required</p>
+              }
+
+
+              @else if (loginAsAdminForm.get("password")?.getError("pattern")) {
+                <p>Password must be at least 6 digits</p>
+              }
+            </div>
+          }
+        </div>
+
+
+
+
+
+        <button class="btn" type="submit">Sign in</button>
+      </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</section>

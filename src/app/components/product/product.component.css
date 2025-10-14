@@ -1,0 +1,248 @@
+.product-list {
+  width: 100%;
+  height: auto;
+}
+
+.product-list .product-list-head {
+  width: 100%;
+  height: auto;
+}
+
+.product-list .product-list-head h3 {
+  color: rebeccapurple;
+  text-align: center;
+  text-decoration: underline;
+  padding-top: 35px;
+  margin-bottom: 30px;
+}
+
+.product-list .product-info {
+  width: 100%;
+  height: auto;
+}
+
+.product-list .product-info .img-product .img-fluid {
+  width: 100%;
+  height: 320px !important;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.product-list .product-info .product-details span {
+  color: #000;
+}
+
+.product-list .product-info .product-details h3 {
+  color: rebeccapurple;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 22px;
+}
+
+.product-list .product-info .product-details p {
+  color: rebeccapurple;
+  font-size: 17px;
+}
+
+.product-list .product-info .product-details .rating {
+  display: flex;
+  flex-wrap: nowrap !important;
+  justify-content: space-between;
+  /* width: 100%; */
+  height: auto;
+  color: #ffc908;
+  font-size: 12px;
+  padding-left: 40px;
+}
+
+.product-list .product-info .product-details .rating span {
+  color: #ffc908;
+  /* font-size: 15px ; */
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+@media (max-width: 767px) {
+  .product-list {
+    padding-bottom: 50px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .product-list {
+    padding-bottom: 50px;
+  }
+}
+
+.review-about {
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
+}
+
+.all-reviews {
+  background: #fff;
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  /* width: 100%; */
+  height: auto;
+}
+
+.review-item {
+  background: #f9f9f9;
+  border-radius: 14px;
+  padding: 20px;
+  /* margin: 10px auto; */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.review-item h2 {
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.review-item h6 {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+.review-item p {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 6px;
+}
+
+.rating-color {
+  color: #f9b115;
+  font-size: 1.1rem;
+  margin: 0 2px;
+}
+
+.owl-carousel .owl-stage {
+  display: flex;
+  align-items: stretch;
+}
+
+.owl-carousel .owl-item {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .review-item {
+    padding: 15px;
+  }
+
+  .review-item h2 {
+    font-size: 1rem;
+  }
+
+  .review-item h6 {
+    font-size: 0.9rem;
+  }
+}
+
+.review-title h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.rating-summary {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.rating-summary strong {
+  color: #f9b115;
+  font-size: 1.3rem;
+  margin: 0 4px;
+}
+
+.rating-summary span {
+  color: #777;
+}
+
+.add-review-form {
+  margin-top: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  width: 100%;
+  height: auto;
+}
+
+.add-review-form h4 {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.add-review-form form {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* gap: 12px; */
+  width: 100%;
+  height: auto;
+}
+
+.add-review-form input,
+.add-review-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  /* margin-bottom: 15px; */
+}
+.review-about .add-review-form form .form-info {
+  margin-bottom: 15px;
+}
+
+.review-about .add-review-form form .btn {
+  margin-bottom: 25px !important;
+}
+.review-about .add-review-form form .alert {
+  margin: 0px;
+  padding: 0px;
+}
+
+.review-about .add-review-form form .alert p {
+  padding-left: 8px;
+  padding-top: 5px;
+  font-size: 15px;
+}
+
+
+
+
+
+
+@media (max-width: 767px) {
+  .review-section {
+    padding: 20px;
+  }
+
+  .review-title h4 {
+    font-size: 1.15rem;
+  }
+
+  .btn-submit {
+    font-size: 0.95rem;
+  }
+}

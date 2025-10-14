@@ -1,0 +1,90 @@
+
+
+.products-about {
+  width: 100%;
+  height: auto;
+  margin-top: 35px;
+}
+
+.products-about .product-head {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding-top: 25px;
+}
+
+.products-about .product-head h3 {
+  color: #8A33FD;
+  font-size: 25px;
+  text-decoration: underline;
+  padding-left: 10px;
+}
+
+.products-about .all-products {
+  width: 100%;
+  height: auto;
+  margin-top: 35px;
+}
+
+.products-about .all-products .product {
+  border: 1px solid #8A33FD;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.products-about .all-products .product .img-fluid {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+.products-about .all-products .product h5 {
+  color: #8A33FD;
+  font-size: 15px;
+  padding-left: 6px;
+  font-weight: bold;
+
+}
+
+.products-about .all-products .product p {
+  color: #8A33FD;
+  padding-left: 6px;
+  font-size: 15px;
+}
+
+
+
+.products-about .all-products .product .links {
+  position: absolute;
+  top: 50%;
+  right: -80px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.products-about .all-products .product:hover .links {
+  right: 20px;
+  opacity: 1;
+}
+
+.products-about .all-products .product .link-btn {
+  background-color: rgba(0,0,0,0.6);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.products-about .all-products .product .link-btn:hover {
+  transform: scale(1.1);
+  background-color: #000;
+}
+

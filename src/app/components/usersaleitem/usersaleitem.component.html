@@ -1,0 +1,46 @@
+<section class="sale-item">
+  <div class="container">
+
+
+
+
+    <div class="col-12">
+      <div class="sale-item-head">
+        <h3>SaleItems:</h3>
+      </div>
+    </div>
+
+
+    <div class="all-items">
+
+      <div class="row">
+        @for (item of AllItems(); track item.product_id) {
+
+        <div class="col-lg-3 col-sm-12 col-md-4">
+          <div class="item">
+            <img [src]="item.product.main_image" class="img-fluid" alt="">
+            <h3>{{item.product.name}}</h3>
+            <p>{{item.product.description.slice(0 , 20)}}</p>
+            <!-- <button class="btn"> AddToCart</button> -->
+
+            <div class="sale-info">
+              <span>{{item.discount_percent | currency: "GBP"}}</span>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+        }
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+</section>

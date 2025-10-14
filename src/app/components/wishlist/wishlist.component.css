@@ -1,0 +1,138 @@
+
+
+.wishlist {
+  width: 100%;
+  height: auto;
+  border-color: rgb(240, 248, 255);
+   /* background-color: aliceblue; */
+
+  margin-bottom: 25px;
+
+}
+
+.wishlist .wishlist-head {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: nowrap !important;
+  justify-content: space-between;
+}
+
+.wishlist .wishlist-head .remove-all .btn {
+
+  margin-top: 45px;
+
+}
+
+.wishlist .wishlist-head h5 {
+  padding-top: 50px;
+  text-decoration: underline;
+  color: rebeccapurple;
+  font-size: 25px;
+  margin-bottom: 30px;
+
+}
+
+
+.wishlist .items-wishlist {
+  width: 100%;
+  height: auto;
+  /* border-bottom: 1px solid #000; */
+}
+
+.wishlist .items-wishlist .item {
+  border-bottom: 1px solid rebeccapurple ;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.wishlist .items-wishlist .item .item-img .img-fluid {
+  width: 100%;
+  height: auto;
+  margin-bottom: 6px;
+
+}
+
+.wishlist .items-wishlist .item .item-details h2 {
+  color: rebeccapurple;
+  font-size: 18px;
+  font-weight: bold;
+  /* padding-top: 6px; */
+
+}
+
+.wishlist .items-wishlist .item .item-details p {
+  color: rebeccapurple;
+  font-size: 16px;
+}
+
+.wishlist .items-wishlist .item .item-details .btn {
+  margin-bottom: 10px;
+}
+
+.wishlist .empty-wishlist {
+  width: 50%;
+  height: auto;
+  margin: auto;
+  margin-top: 120px;
+  /* background-color: brown; */
+  text-align: center;
+}
+
+.wishlist .empty-wishlist .img-fluid {
+  width: 30%;
+  height: auto;
+  margin-bottom: 20px;
+  animation: float 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+.wishlist .empty-wishlist h2 {
+  color: rgb(25, 135, 84);
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 20px;
+
+}
+
+.wishlist .empty-wishlist .btn {
+  margin-bottom: 25px;
+}
+
+
+@media (max-width:767px) {
+
+  .wishlist .empty-wishlist {
+  width: 100%;
+
+}
+
+.wishlist .empty-wishlist .img-fluid {
+  width: 50%;
+  height: auto;
+}
+
+}
+
+
+@media (min-width:768px)and (max-width:1023px) {
+
+    .wishlist .empty-wishlist {
+  width: 100%;
+
+}
+
+.wishlist .empty-wishlist .img-fluid {
+  width: 40%;
+  height: auto;
+}
+
+}

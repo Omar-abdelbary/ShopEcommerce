@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="home">
+      <img src="./assets/img/Logo.png" class="img-fluid" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto ">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="home" routerLinkActive="active-component">Home</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="allproducts" routerLinkActive="active-component">Products</a>
+        </li>
+
+
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="categories" routerLinkActive="active-component">Categories</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="discountitems" routerLinkActive="active-component">SaleItems</a>
+        </li>
+
+
+
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="wishlist" routerLinkActive="active-component"><i
+              class="fa-solid fa-heart-circle-plus"></i></a>
+        </li>
+
+
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="cart" routerLinkActive="active-component"><i
+              class="fa-solid fa-cart-plus"></i></a>
+        </li>
+
+
+
+
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="userdata" routerLinkActive="active-component"><i
+              class="fa-solid fa-circle-user"></i></a>
+        </li>
+
+      </ul>
+
+
+
+      <button class="btn" (click)="this._AuthService.logout()"> Sign Out</button>
+
+    </div>
+  </div>
+</nav>
