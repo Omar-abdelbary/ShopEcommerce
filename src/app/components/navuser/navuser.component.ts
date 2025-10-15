@@ -27,7 +27,7 @@ export class NavuserComponent  implements OnInit {
 
     this._CartService.getCart().subscribe({
       next:(res)=>{
-        console.log(res);
+        // console.log(res);
         this._CartService.CartNumbers.set(res.total_quantity) ;
 
       }
