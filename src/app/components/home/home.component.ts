@@ -14,6 +14,7 @@ import { CartService } from '../../core/services/cart.service';
 import { SaleitemsService } from '../../core/services/saleitems.service';
 import { Isaleitem } from '../../core/interfaces/isaleitem';
 import { AuthService } from '../../core/services/auth.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -140,14 +141,14 @@ export class HomeComponent   implements OnInit {
 
     //   get token from url
 
-    this._ActivatedRoute.queryParams.subscribe(params => {
+    this._ActivatedRoute.queryParams.pipe(take(1)).subscribe(params => {
       const token = params['token'];
       if (token) {
 
 
         localStorage.setItem('userToken' , token) ;
         this._AuthService.Token();
-        // this._Router.navigate(['/home'])
+        this._Router.navigate([], { queryParams: {}, replaceUrl: true })
        }
     })
 
