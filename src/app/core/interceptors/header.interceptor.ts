@@ -37,9 +37,17 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
         req.url.includes('wishlist') ||
         req.url.includes('create-checkout-session')
       ) {
+
+
+
         req = req.clone({
           setHeaders: { Authorization: `Bearer ${localStorage.getItem("userToken")}` },
+
+
         });
+
+        console.log(req);
+
       }
     }
 
