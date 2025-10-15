@@ -6,6 +6,8 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
   const _PLATFORM_ID = inject(PLATFORM_ID);
 
 
+  console.log('Interceptor working ✅');
+
 
 
   if (isPlatformBrowser(_PLATFORM_ID)) {
@@ -13,6 +15,9 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
 
 
      if (localStorage.getItem('userToken') !== null) {
+
+      console.log('Token added to header 👉', localStorage.getItem("userToken"));
+
       if (
         req.url.includes('getUserDetails') ||
         req.url.includes('changePassword') ||
