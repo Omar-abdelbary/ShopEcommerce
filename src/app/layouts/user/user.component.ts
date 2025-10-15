@@ -6,14 +6,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Iadmindata } from '../../core/interfaces/iadmindata';
 import { DatePipe } from '@angular/common';
 import { Userdata } from '../../core/interfaces/userdata';
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-user',
   standalone: true,
   imports: [
     RouterOutlet,
-    NavuserComponent ,
-
+    NavuserComponent,
+    FooterComponent
 ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'

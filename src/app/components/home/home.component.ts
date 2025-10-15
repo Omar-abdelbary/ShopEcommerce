@@ -7,7 +7,7 @@ import { Icategory } from '../../core/interfaces/icategory';
 import { AllproductsService } from '../../core/services/allproducts.service';
 import { Iproducts } from '../../core/interfaces/iproducts';
 import { CurrencyPipe } from '@angular/common';
-import { RouterLink } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { WishlistService } from '../../core/services/wishlist.service';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../core/services/cart.service';
@@ -29,6 +29,8 @@ import { Isaleitem } from '../../core/interfaces/isaleitem';
 export class HomeComponent   implements OnInit {
 
 
+  private readonly _ActivatedRoute = inject(ActivatedRoute) ;
+  private readonly _Router = inject(Router) ;
   private readonly _CategoriesService = inject(CategoriesService) ;
   private readonly _AllproductsService = inject(AllproductsService) ;
   private readonly _SaleitemsService = inject(SaleitemsService) ;
@@ -133,6 +135,18 @@ export class HomeComponent   implements OnInit {
 
 
   ngOnInit(): void {
+
+    //   get token from url
+
+    this._ActivatedRoute.queryParams.subscribe(params => {
+      const token = params['token'];
+      if (token) {
+
+
+        localStorage.setItem('userToken' , token) ;
+        this._Router.navigate(['/home'])
+       }
+    })
 
 
 

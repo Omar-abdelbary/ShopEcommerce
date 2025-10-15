@@ -1,0 +1,60 @@
+
+
+.not-found {
+  width: 100%;
+  height: auto;
+  background-color: aliceblue;
+}
+
+.not-found .not-found-info {
+  width: 50%;
+  height: auto;
+  margin: auto;
+  padding-top: 100px;
+  text-align: center !important;
+}
+
+.not-found .not-found-info .img-fluid {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  animation: floatUpDown 2s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); } /* تتحرك فوق شوية */
+  100% { transform: translateY(0); }
+}
+
+.not-found .not-found-info h6 {
+  font-size: 22px;
+  font-weight: bold;
+  color: rebeccapurple;
+  margin-bottom: 15px;
+}
+
+
+.not-found .not-found-info .btn {
+  margin-bottom: 25px;
+}
+
+@media (max-width:767px) {
+
+
+  .not-found .not-found-info {
+    width: 100%;
+    height: auto;
+  }
+
+}
+
+
+@media (min-width:768px)and(max-width:1023px) {
+
+    .not-found .not-found-info {
+    width: 100%;
+    height: auto;
+  }
+
+}

@@ -3,10 +3,8 @@ import { Component, DestroyRef, inject, signal, WritableSignal } from '@angular/
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
-import { threadId } from 'worker_threads';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
-import {  takeUntil ,  } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
@@ -83,7 +81,7 @@ export class ForgetpasswordComponent {
 
     if (this.resetPasswordForm.valid) {
 
-      this._AuthService.resetPassword(this.resetPasswordForm.value).subscribe({
+      this._AuthService.resetPassword(this.resetPasswordForm.value).pipe(takeUntilDestroyed(this.#destoryREf)).subscribe({
         next:(res)=>{
           // console.log(res);
           this._ToastrService.success(res.message , "Euphoria Folks Pvt Ltd") ;

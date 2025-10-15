@@ -1,0 +1,176 @@
+
+
+
+
+
+
+
+
+
+
+/*
+::ng-deep .custom-scrolltop {
+  position: fixed !important;
+  right: 5rem;
+  bottom: 1.5rem;
+  z-index: 999999;
+  background-color: #8A33FD;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(138, 51, 253, 0.4);
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+::ng-deep .p-scrolltop-visible.custom-scrolltop {
+  transform: translateX(0);
+  opacity: 1;
+  animation: floatUpDown 1.4s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+
+::ng-deep .custom-scrolltop svg {
+  animation: rocketShake 1.2s ease-in-out infinite;
+}
+
+@keyframes rocketShake {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+} */
+
+
+
+
+
+
+
+
+
+
+
+.scroll-top-btn {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 999999;
+  background-color: #8a33fd;
+  border: none;
+  border-radius: 50%;
+  width: 3.2rem;
+  height: 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(138, 51, 253, 0.4);
+  animation: floatUpDown 1.2s ease-in-out infinite;
+  transition: all 0.3s ease;
+  overflow: visible;
+}
+
+.scroll-top-btn:hover {
+  background-color: #7326d9;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(138, 51, 253, 0.6);
+}
+
+/* حركة الصاروخ لفوق وتحت */
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.rocket-icon {
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+/* ✨ الشرارات (نقط نازلة ورا بعض) */
+.scroll-top-btn::before,
+.scroll-top-btn::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background-color: #ffb347;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: spark 1.2s infinite ease-in-out;
+  box-shadow: 0 0 6px #ff9f43;
+}
+
+/* النقطة التانية */
+.scroll-top-btn::after {
+  animation-delay: 0.4s;
+}
+
+/* النقطة التالتة (نعمل div وهمي للنقطة التالتة) */
+.scroll-top-btn::part(extra-spark) {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background-color: #ffb347;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: spark 1.2s infinite ease-in-out;
+  animation-delay: 0.8s;
+  box-shadow: 0 0 6px #ff9f43;
+}
+
+/* حركة الشرارات */
+@keyframes spark {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(1);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, 10px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 30px) scale(0.8);
+  }
+}
+
+.scroll-top-btn:active .rocket-icon {
+  animation: rocketLaunch 0.6s ease-out;
+}
+
+@keyframes rocketLaunch {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  50% { transform: translateY(-20px) scale(1.1); }
+  100% { transform: translateY(-100px) scale(0.8); opacity: 0; }
+}
+
+
+

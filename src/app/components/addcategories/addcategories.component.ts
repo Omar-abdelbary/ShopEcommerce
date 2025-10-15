@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CategoriesService } from '../../core/services/categories.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-addcategories',
@@ -17,6 +18,9 @@ import { Router } from '@angular/router';
 })
 export class AddcategoriesComponent {
 
+
+
+  readonly _DestroyRef = inject(DestroyRef) ;
   private readonly _FormBuilder = inject(FormBuilder) ;
   private readonly _CategoriesService = inject(CategoriesService) ;
   private readonly _Router = inject(Router) ;
@@ -35,7 +39,7 @@ export class AddcategoriesComponent {
 
     if (this.addCategoriesForm.valid) {
 
-      this._CategoriesService.AddCategory(this.addCategoriesForm.value).subscribe({
+      this._CategoriesService.AddCategory(this.addCategoriesForm.value).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
         next:(res)=>{
           console.log(res);
 
