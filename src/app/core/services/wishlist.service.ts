@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -9,6 +9,8 @@ import { environment } from '../environments/environment';
 export class WishlistService {
 
   private readonly _HttpClient = inject(HttpClient) ;
+
+  WishListNumbers:WritableSignal<number> = signal(0)  ;
 
 
   addWishlistItem(product_id:string | number | null):Observable<any> {

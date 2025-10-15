@@ -25,6 +25,7 @@ import { EditcategoryadminComponent } from './components/editcategoryadmin/editc
 import { AllordersComponent } from './components/allorders/allorders.component';
 import { SaleitemsComponent } from './components/saleitems/saleitems.component';
 import { AdmindataComponent } from './components/admindata/admindata.component';
+import { authGuard } from './core/guards/auth.guard';
 
 
 export const routes: Routes = [
@@ -38,7 +39,7 @@ export const routes: Routes = [
   ]} ,
 
 
-  {path:"" , component: UserComponent , children:[
+  {path:"" , component: UserComponent , canActivate:[authGuard] , children:[
     {path:"" , redirectTo:"home" , pathMatch:"full" , title:"home"} ,
     {path:"home" , loadComponent:()=> import('./components/home/home.component').then( (c)=>c.HomeComponent) , title:"home"} ,
     {path:"allproducts" , loadComponent:()=> import("./components/allproducts/allproducts.component").then( (c)=>c.AllproductsComponent), title:"allproducts"} ,
@@ -53,7 +54,7 @@ export const routes: Routes = [
     {path:"discountitems" , loadComponent:()=> import("./components/usersaleitem/usersaleitem.component").then( (c)=>c.UsersaleitemComponent) , title:"DiscountItems"} ,
   ]} ,
 
-  {path: "" , component: AdminComponent , children:[
+  {path: "" , component: AdminComponent , canActivate:[authGuard] , children:[
     {path:"" , redirectTo:"adminproducts" , pathMatch:"full" , title:"admin info"} ,
     {path:"adminproducts" , component:AdminproductsComponent , title:"AllProductsAdmin"} ,
     {path:"addproduct" ,  loadComponent:()=>import("./components/addproduct/addproduct.component").then( (c)=>c.AddproductComponent) , title:"addProduct"} ,

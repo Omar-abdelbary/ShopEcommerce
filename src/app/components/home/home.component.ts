@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../core/services/cart.service';
 import { SaleitemsService } from '../../core/services/saleitems.service';
 import { Isaleitem } from '../../core/interfaces/isaleitem';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +31,7 @@ export class HomeComponent   implements OnInit {
 
 
   private readonly _ActivatedRoute = inject(ActivatedRoute) ;
+  private readonly _AuthService = inject(AuthService) ;
   private readonly _Router = inject(Router) ;
   private readonly _CategoriesService = inject(CategoriesService) ;
   private readonly _AllproductsService = inject(AllproductsService) ;
@@ -144,7 +146,8 @@ export class HomeComponent   implements OnInit {
 
 
         localStorage.setItem('userToken' , token) ;
-        this._Router.navigate(['/home'])
+        this._AuthService.Token();
+        // this._Router.navigate(['/home'])
        }
     })
 

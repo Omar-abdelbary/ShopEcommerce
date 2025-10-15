@@ -46,12 +46,13 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this._CartService.getCart().subscribe({
       next: (res) => {
-        // console.log(res);
+        console.log(res);
 
         if (res.message === 'Cart retrieved successfully') {
           this.AllItems.set(res.data);
           // console.log(this.AllItems());
           this.TotalPrice.set(res.total_price);
+          this._CartService.CartNumbers.set(res.total_quantity) ;
         }
       },
 
@@ -71,6 +72,7 @@ export class CartComponent implements OnInit {
           this.AllItems.set([]);
           this.TotalPrice.set('0');
           this._ToastrService.success(res.message, 'Euphoria Folks Pvt Ltd');
+          this._CartService.CartNumbers.set(0) ;
         }
       },
 
@@ -85,6 +87,7 @@ export class CartComponent implements OnInit {
     this._CartService.deleteItem(cartId).subscribe({
       next: (res) => {
         if (res.message === 'Cart item removed successfully') {
+          this._CartService.CartNumbers.update(n => n - 1) ;
           // ✅ نتأكد إن AllItems مش null قبل الفلترة
           const currentItems = this.AllItems() || [];
           const updated = currentItems.filter((i) => i.cart_item_id !== cartId);
