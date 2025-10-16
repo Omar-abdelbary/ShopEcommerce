@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CartService } from '../../core/services/cart.service';
 import { sign } from 'crypto';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -12,7 +12,8 @@ import { DatePipe, NgClass, UpperCasePipe } from '@angular/common';
   imports: [
     NgClass ,
     DatePipe ,
-    UpperCasePipe
+    UpperCasePipe ,
+    RouterLink ,
   ],
   templateUrl: './receipt.component.html',
   styleUrl: './receipt.component.css'
