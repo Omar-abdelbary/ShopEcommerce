@@ -129,8 +129,11 @@ export class HomeComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    //   get token from url
 
+
+
+
+    //   get token from url
     this._ActivatedRoute.queryParams.pipe(take(1)).subscribe((params) => {
       const token = params['token'];
       if (token) {
@@ -200,17 +203,29 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // addItemCart() {
-  //   this._CartService.addCart().subscribe({
-  //     next:(res)=>{
-  //       console.log(res);
 
-  //     },
 
-  //     error:(err:HttpErrorResponse)=>{
-  //       console.log(err);
 
-  //     }
-  //   })
-  // }
+  // add item to cart
+
+  addProduct(productId:string|number ) {
+    this._CartService.addCart(productId).subscribe({
+      next:(res)=>{
+        // console.log(res);
+          if (res.message === "Item added to cart") {
+
+
+        this._ToastrService.success(res.message , "Euphoria Folks Pvt Ltd") ;
+        this._CartService.CartNumbers.set(res.total_quantity) ;
+
+      }
+
+      },
+
+      error:(err:HttpErrorResponse)=>{
+        console.log(err);
+
+      }
+    })
+  }
 }

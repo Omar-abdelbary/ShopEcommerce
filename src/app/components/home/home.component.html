@@ -102,7 +102,7 @@
               <h4>{{product.name}}</h4>
               <p>{{product.brand}}</p>
               <p>{{product.price | currency:"GBP"}}</p>
-
+              <button class="btn"  (click)="addProduct(product.product_id)"> AddToCart</button>
               <!-- الأيقونات -->
               <div class="product-actions">
 

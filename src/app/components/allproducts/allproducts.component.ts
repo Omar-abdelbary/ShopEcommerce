@@ -90,7 +90,7 @@ export class AllproductsComponent implements OnInit {
 addItemCart(productId:string| number) {
   this._CartService.addCart(productId).subscribe({
     next:(res)=>{
-      console.log(res);
+      // console.log(res);
 
       if (res.message === "Item added to cart") {
 

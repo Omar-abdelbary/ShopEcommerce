@@ -29,6 +29,7 @@ import {
 } from '@angular/forms';
 import { Ireview } from '../../core/interfaces/ireview';
 import Swal from 'sweetalert2';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -50,6 +51,7 @@ export class ProductComponent implements OnInit {
   private readonly _ToastrService = inject(ToastrService);
   private readonly _FormBuilder = inject(FormBuilder);
   private readonly _PLATFORM_ID = inject(PLATFORM_ID);
+  private readonly _CartService = inject(CartService) ;
 
   ProductDetails: WritableSignal<Specificproduct | null> = signal(null);
   productImages: WritableSignal<Iproductsimages[]> = signal([]);
@@ -79,8 +81,9 @@ export class ProductComponent implements OnInit {
           },
         });
 
-        // get all review product
 
+
+        // get all review product
         this._ReviewService.getAllReviewProduct(this.productId()).subscribe({
           next: (res) => {
             // console.log(res);
@@ -107,6 +110,29 @@ export class ProductComponent implements OnInit {
         });
       },
     });
+  }
+
+
+  // add item to cart
+   addProduct(productId:string|number ) {
+    this._CartService.addCart(productId).subscribe({
+      next:(res)=>{
+        // console.log(res);
+          if (res.message === "Item added to cart") {
+
+
+        this._ToastrService.success(res.message , "Euphoria Folks Pvt Ltd") ;
+        this._CartService.CartNumbers.set(res.total_quantity) ;
+
+      }
+
+      },
+
+      error:(err:HttpErrorResponse)=>{
+        console.log(err);
+
+      }
+    })
   }
 
   // form add review
