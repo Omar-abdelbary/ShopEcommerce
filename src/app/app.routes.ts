@@ -50,7 +50,7 @@ export const routes: Routes = [
     {path:"product/:id" , loadComponent:()=> import("./components/product/product.component").then( (c)=>c.ProductComponent) , title:"productDetails"} ,
     {path:"userdata" , loadComponent:()=> import("./components/userdata/userdata.component").then( (c)=>c.UserdataComponent ) , title:"UserData"} ,
     {path:"changepass" , loadComponent:()=> import("./components/changepass/changepass.component").then( (c)=>c.ChangepassComponent) , title:"change password"} ,
-    {path:"receipt/:id" , loadComponent:()=>import("./components/receipt/receipt.component").then( (c)=>c.ReceiptComponent) , title:"receipt" } ,
+    {path:"receipt" , loadComponent:()=>import("./components/receipt/receipt.component").then( (c)=>c.ReceiptComponent) , title:"receipt" } ,
     {path:"discountitems" , loadComponent:()=> import("./components/usersaleitem/usersaleitem.component").then( (c)=>c.UsersaleitemComponent) , title:"DiscountItems"} ,
   ]} ,
 

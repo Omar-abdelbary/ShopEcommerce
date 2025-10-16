@@ -57,7 +57,7 @@ export class WishlistComponent implements OnInit {
   ngOnInit(): void {
     this._WishlistService.getWishlist().subscribe({
       next: (res) => {
-        // console.log(res);
+        console.log(res);
 
         if (res.message === 'Wishlist retrieved successfully') {
           this.AllItems.set(res.data);
