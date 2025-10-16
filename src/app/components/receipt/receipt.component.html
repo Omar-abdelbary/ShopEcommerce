@@ -1,1 +1,58 @@
-<p>receipt works!</p>
+
+
+
+
+
+  <section class="receipt-page">
+  <div class="container">
+    <div class="receipt-header text-center">
+      <i class="fa-solid fa-circle-check success-icon"></i>
+      <h2>Thank you for your purchase! 🎉</h2>
+      <p>Your order was completed successfully.</p>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary card shadow-sm p-4">
+      <h4 class="section-title">Order Summary</h4>
+      <div class="order-info">
+        <p><strong>Order ID:</strong> {{ orderDetails()?.order_id }}</p>
+        <p><strong>Status:</strong>
+          <span [ngClass]="{
+            'text-success': orderDetails()?.status === 'paid',
+            'text-danger': orderDetails()?.status !== 'paid'
+          }">{{ orderDetails()?.status| uppercase }}</span>
+        </p>
+        <p><strong>Total:</strong> ${{ orderDetails()?.total_amount }}</p>
+        <p><strong>Date:</strong> {{ orderDetails()?.created_at| date: 'medium' }}</p>
+      </div>
+    </div>
+
+    <!-- Order Items -->
+    <div class="order-items mt-5">
+      <h4 class="section-title mb-4">Items in your Order</h4>
+      <div class="row g-4">
+        @for (item of orderDetails()?.items; track item.order_item_id) {
+          <div class="col-md-6 col-lg-4">
+            <div class="card item-card h-100 shadow-sm">
+              <img [src]="item.main_image" class="card-img-top" alt="{{item.product_name}}">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.product_name }}</h5>
+                <p class="card-text small text-muted">{{ item.product_description }}</p>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                  <span><strong>Qty:</strong> {{ item.quantity }}</span>
+                  <span class="price fw-bold text-primary">${{ item.price }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <a routerLink="/home" class="btn btn-primary back-btn">Back to Home</a>
+    </div>
+  </div>
+</section>
+
+
