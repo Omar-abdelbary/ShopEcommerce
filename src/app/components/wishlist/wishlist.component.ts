@@ -61,6 +61,7 @@ export class WishlistComponent implements OnInit {
 
         if (res.message === 'Wishlist retrieved successfully') {
           this.AllItems.set(res.data);
+          this._WishlistService.WishListNumbers.set(res.total_items) ;
         }
       },
 
@@ -84,6 +85,7 @@ export class WishlistComponent implements OnInit {
           this._ToastrService.success(res.message, 'Euphoria Folks Pvt Ltd');
 
           this.AllItems.set(res.data);
+          this._WishlistService.WishListNumbers.set(res.total_items) ;
         }
       },
 
@@ -106,6 +108,7 @@ export class WishlistComponent implements OnInit {
         if (res.message === 'Wishlist cleared successfully') {
           this._ToastrService.success(res.message, 'Euphoria Folks Pvt Ltd');
           this.AllItems.set(res);
+          this._WishlistService.WishListNumbers.set(0) ;
         }
       },
 
