@@ -20,28 +20,27 @@ export class ReceiptComponent  implements OnInit {
   orderId:WritableSignal<string|number | null> = signal(null) ;
 
   ngOnInit(): void {
+    console.log('Full URL:', window.location.href);
 
-    this._ActivatedRoute.paramMap.subscribe({
-      next:(p)=>{
-        // console.log(p.get("id"));
+     this._ActivatedRoute.queryParamMap.subscribe({
+    next: (params) => {
+      const id = params.get('order_id');
+      this.orderId.set(id);
 
-        this.orderId.set(p.get("id"))
-
-
-
-        this._CartService.orderDetails(this.orderId()).subscribe({
-          next:(res)=>{
+      if (id) {
+        this._CartService.orderDetails(id).subscribe({
+          next: (res) => {
             console.log(res);
-
           },
-
-          error:(err:HttpErrorResponse)=>{
+          error: (err: HttpErrorResponse) => {
             console.log(err);
-
-          }
-        })
+          },
+        });
+      } else {
+         console.log('⚠️ No order_id found in query params');
       }
-    })
+    },
+  });
 
   }
 }

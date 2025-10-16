@@ -194,6 +194,7 @@ export class HomeComponent implements OnInit {
 
         if (res.message === 'Product added to wishlist') {
           this._ToastrService.success(res.message, 'Euphoria Folks Pvt Ltd');
+          this._WishlistService.WishListNumbers.set(res.total_items) ;
         }
       },
 
