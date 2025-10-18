@@ -122,7 +122,7 @@
 
 .home .products-info .products .product-details h4 {
   color: #8A33FD;
-  font-size: 20px;
+  font-size: 17px;
   text-align: center;
   margin-bottom: 15px;
 }
@@ -133,6 +133,18 @@
   text-align: center;
 }
 
+
+.home .products-info .products .product-details .btn-buy {
+  text-align: center;
+
+}
+
+.home .products-info .products .product-details .btn-buy .btn  {
+
+  background-color: #8A33FD;
+  color: #fff;
+  margin-bottom: 10px;
+}
 
 
 .product-actions {

@@ -39,16 +39,14 @@ export class ReceiptComponent  implements OnInit {
       if (id) {
         this._CartService.orderDetails(id).subscribe({
           next: (res) => {
-            console.log(res);
+            // console.log(res);
             this.orderDetails.set(res.data) ;
           },
           error: (err: HttpErrorResponse) => {
             console.log(err);
           },
         });
-      } else {
-         console.log('⚠️ No order_id found in query params');
-      }
+      } 
     },
   });
 

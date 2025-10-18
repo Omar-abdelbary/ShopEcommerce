@@ -102,7 +102,9 @@
               <h4>{{product.name}}</h4>
               <p>{{product.brand}}</p>
               <p>{{product.price | currency:"GBP"}}</p>
-              <button class="btn"  (click)="addProduct(product.product_id)"> AddToCart</button>
+              <div class="btn-buy">
+                <button class="btn" (click)="addProduct(product.product_id)"> AddToCart</button>
+              </div>
               <!-- الأيقونات -->
               <div class="product-actions">
 
@@ -136,24 +138,24 @@
 
       <div class="sale-items-info">
         <div class="row">
-          @for (item of AllItems(); track  item.product_id) {
-            <div class="col-lg-3 col-sm-12 col-md-4">
-          <div class="item">
-            <img [src]="item.product.main_image" class="img-fluid" alt="">
-            <h3>{{item.product.name}}</h3>
-            <p>{{item.product.description.slice(0 , 20)}}</p>
-            <!-- <button class="btn"> AddToCart</button> -->
+          @for (item of AllItems(); track item.product_id) {
+          <div class="col-lg-3 col-sm-12 col-md-4">
+            <div class="item">
+              <img [src]="item.product.main_image" class="img-fluid" alt="">
+              <h3>{{item.product.name}}</h3>
+              <p>{{item.product.description.slice(0 , 20)}}</p>
+              <!-- <button class="btn"> AddToCart</button> -->
 
-            <div class="sale-info">
-              <span>{{item.discount_percent | currency: "GBP"}}</span>
+              <div class="sale-info">
+                <span>{{item.discount_percent | currency: "GBP"}}</span>
+              </div>
+
+
+
+
+
             </div>
-
-
-
-
-
           </div>
-        </div>
           }
         </div>
       </div>

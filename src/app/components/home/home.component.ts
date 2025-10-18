@@ -190,7 +190,7 @@ export class HomeComponent implements OnInit {
   additemWishlist(productId: number) {
     this._WishlistService.addWishlistItem(productId).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
 
         if (res.message === 'Product added to wishlist') {
           this._ToastrService.success(res.message, 'Euphoria Folks Pvt Ltd');
