@@ -111,6 +111,12 @@
 .home .products-info .products .product-details {
   padding: 4px;
   margin-bottom: 15px;
+  position: relative;
+  transition: box-shadow 0.5s;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid blueviolet;
+  border-radius: 10px;
 }
 
 .home .products-info .products .product-details .img-fluid {
@@ -141,11 +147,22 @@
 
 .home .products-info .products .product-details .btn-buy .btn  {
 
-  background-color: #8A33FD;
+     width: 70%;
+  transform: translateY(150%);
+  transition: transform 0.7s;
+  background-color: rebeccapurple;
+  padding: 7px 20px;
+  /* margin-left: 50px; */
+  border: 1px solid #ccc;
+  border-radius: 5px;
   color: #fff;
+  cursor: pointer;
   margin-bottom: 10px;
 }
+.home .products-info .products .product-details:hover .btn-buy .btn {
 
+  transform: translateY(0);
+}
 
 .product-actions {
   position: absolute;
