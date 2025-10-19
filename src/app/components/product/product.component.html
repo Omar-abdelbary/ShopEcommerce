@@ -183,9 +183,9 @@
               </div>
 
               <!-- لو مفيش تعليقات -->
-              @if (reviewItems()?.length === 0) {
+              <!-- @if (reviewItems()?.length === 0) {
               <p class="text-center text-secondary mt-3"> No reviews yet 😅</p>
-              }
+              } -->
 
               <!-- عرض التعليقات -->
               <div class="review-list mt-3 ">
@@ -212,6 +212,10 @@
                     </button>
                   </div>
                 </div>
+                }
+
+                @empty {
+                  <p class="text-center text-secondary mt-3"> No reviews yet 😅</p>
                 }
               </div>
 
