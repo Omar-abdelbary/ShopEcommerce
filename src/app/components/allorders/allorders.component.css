@@ -94,7 +94,7 @@ tbody tr:hover {
     .all-orders .container  {
 
   overflow: hidden !important;
-  max-width: 630px !important;
+  max-width: 600px !important;
 
 }
 
@@ -110,7 +110,7 @@ tbody tr:hover {
   .all-orders .container  {
 
   overflow: hidden !important;
-  max-width: 485px;
+  max-width: 380px;
 
 }
 
