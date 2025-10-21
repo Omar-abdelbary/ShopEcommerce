@@ -22,7 +22,7 @@ import { NgxSpinner } from 'ngx-spinner';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes, withViewTransitions()),
+    provideRouter(routes, withViewTransitions() , withInMemoryScrolling( { scrollPositionRestoration:"top"})),
     provideClientHydration(),
     provideHttpClient(
       withFetch(),
@@ -34,8 +34,8 @@ export const appConfig: ApplicationConfig = {
     ),
     provideAnimations(),
     provideToastr({
-      progressBar: true, // شريط بيبين المدة المتبقية
-      progressAnimation: 'decreasing', // طريقة حركة الشريط
+      progressBar: true,
+      progressAnimation: 'decreasing',
     }),
     provideAnimationsAsync(),
     importProvidersFrom(NgxSpinner)

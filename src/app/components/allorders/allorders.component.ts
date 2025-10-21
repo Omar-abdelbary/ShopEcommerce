@@ -27,7 +27,7 @@ export class AllordersComponent implements OnInit {
   ngOnInit(): void {
     this._AllordersService.getAllorderAdmin().subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
 
         if (res.message === 'Orders retrieved successfully') {
           this.Allorders.set(res.data);

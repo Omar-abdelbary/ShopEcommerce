@@ -104,7 +104,7 @@ export class ViewproductComponent implements OnInit {
         // get all review items
         this._ReviewService.getAllReviewProduct(this.ProductId()).subscribe({
           next:(res)=>{
-            console.log(res);
+            // console.log(res);
             this.AllReview.set(res.data) ;
           },
 

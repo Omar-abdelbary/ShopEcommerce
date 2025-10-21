@@ -29,7 +29,7 @@ export class AdmindataComponent   implements OnInit {
 
           this._ToastrService.success(res.message , "Euphoria Folks Pvt Ltd") ;
           this.AdminData.set(res.data) ;
-          console.log(this.AdminData());
+          // console.log(this.AdminData());
 
 
         }

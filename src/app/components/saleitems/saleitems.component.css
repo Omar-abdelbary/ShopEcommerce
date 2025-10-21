@@ -1,0 +1,167 @@
+.sale-items {
+  width: 100%;
+  height: auto;
+  /* background-color: aliceblue; */
+}
+
+.sale-items .sale-items-head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  margin-bottom: 25px;
+  padding-top: 70px;
+}
+
+.sale-items .sale-items-head h5 {
+  color: rebeccapurple;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* card item  */
+
+.sale-items {
+  width: 100%;
+  height: auto;
+}
+
+.sale-items .sale-items-head h6 {
+  padding-top: 50px;
+  text-decoration: underline;
+  color: rebeccapurple;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.sale-items .sale-items-info {
+  width: 100%;
+  height: auto;
+  /* margin-top: 25px; */
+}
+
+.sale-items .sale-items-info .item {
+  border: 1px solid rebeccapurple;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border-radius: 15px;
+}
+
+.sale-items .sale-items-info .item .img-fluid {
+  height: 300px !important;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  transition: ease all 1s;
+}
+
+.sale-items .sale-items-info .item:hover .img-fluid {
+  transform: scale(0.9);
+}
+
+.sale-items .sale-items-info .item h3 {
+  color: rebeccapurple;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sale-items .sale-items-info .item p {
+  color: rebeccapurple;
+  font-size: 16px;
+}
+
+
+.sale-items .sale-items-info .item .sale-info {
+  position: absolute;
+  top: 12px;
+  left: -40px;
+  background-color: crimson;
+  color: #fff;
+  padding: 5px 50px;
+  font-weight: bold;
+  font-size: 14px;
+  transform: rotate(-45deg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: rotate(-45deg) scale(1);
+  }
+  50% {
+    transform: rotate(-45deg) scale(1.1);
+  }
+}
+
+@media (max-width: 767px) {
+  .sale-items .sale-items-info .item .img-fluid {
+    height: auto !important;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    transition: ease all 1s;
+  }
+}
+
+
+@media (min-width:768px)and(max-width:1023px) {
+
+   .sale-items .sale-items-info .item .img-fluid {
+    height: 100px !important;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    transition: ease all 1s;
+  }
+
+}
+
+/* icon hover */
+
+.hover-icons {
+  position: absolute;
+  top: 50%;
+  right: -80px; /* برا العنصر */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: all 0.4s ease;
+  padding: 5px;
+}
+
+.item:hover .hover-icons {
+  right: 20px; /* تدخل من اليمين */
+  opacity: 1;
+}
+
+.hover-icons i {
+  /* background-color: black; */
+  color: white;
+  /* padding: 14px 15px; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 30px !important;
+  border-radius: 50%;
+    font-size: 22px; /* أكبر شوية */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+.delete-icon {
+  background-color: #dc3545;
+}
+
+.delete-icon:hover {
+  background-color: #bb2d3b;
+}

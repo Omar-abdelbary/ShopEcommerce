@@ -41,7 +41,7 @@ export class AddcategoriesComponent {
 
       this._CategoriesService.AddCategory(this.addCategoriesForm.value).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
         next:(res)=>{
-          console.log(res);
+          // console.log(res);
 
 
           if (res.message === "Category created successfully") {

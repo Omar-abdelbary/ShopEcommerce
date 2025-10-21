@@ -1,6 +1,58 @@
-<section class="saleitem">
+
+
+
+@if (AllItems()) {
+  <section class="sale-items">
   <div class="container">
 
-    
+
+
+
+    <!-- section heading  -->
+    <div class="col-12">
+      <div class="sale-items-head">
+        <h5>SaleItems:</h5>
+        <button class="btn btn-primary"  (click)="addProduct()">AddProduct?</button>
+      </div>
+    </div>
+
+
+
+    <div class="sale-items-info">
+      <div class="row">
+        @for (item of AllItems(); track item.product_id) {
+        <div class="col-lg-3 col-sm-12 col-md-4">
+          <div class="item">
+            <img [src]="item.product.main_image" class="img-fluid" alt="">
+            <h3>{{item.product.name}}</h3>
+            <p>{{item.product.description?.slice(0 , 20)}}</p>
+            <!-- <button class="btn"> AddToCart</button> -->
+
+            <div class="sale-info">
+              <span>{{item.discount_percent | currency: "GBP"}}</span>
+            </div>
+
+
+
+
+            <!-- icons تظهر عند hover -->
+            <div class="hover-icons">
+
+              <!-- <i class="fa-solid fa-pen-to-square edit-icon  bg-primary"></i> -->
+              <i class="fa-solid fa-trash delete-icon  bg-danger"  (click)="deleteItem(item.sale_id)"></i>
+            </div>
+
+
+
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+
+
   </div>
 </section>
+
+}

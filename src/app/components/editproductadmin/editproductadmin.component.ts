@@ -59,7 +59,7 @@ export class EditproductadminComponent   implements OnInit {
 
 this._AllproductsService.updateProduct(this.idProduct() , this.EditProductForm.value  ).subscribe({
   next:(res)=>{
-    console.log(res);
+    // console.log(res);
 
     if (res.message === "Product updated successfully") {
 

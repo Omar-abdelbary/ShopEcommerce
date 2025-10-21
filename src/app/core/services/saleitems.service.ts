@@ -4,39 +4,35 @@ import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SaleitemsService {
+  private readonly _HttpClient = inject(HttpClient);
 
-
-
-  private readonly _HttpClient = inject(HttpClient) ;
-
-
-
-
-  getAllItemsSale() :Observable<any> {
-    return this._HttpClient.get(`${environment.baseUrl}/api/saleItems`)
+  getAllItemsSale(): Observable<any> {
+    return this._HttpClient.get(`${environment.baseUrl}/api/saleItems`);
   }
 
-
-  addSaleItem(productInfo:object):Observable<any> {
-    return this._HttpClient.post(`${environment.baseUrl}}/api/saleItems` ,
-      productInfo ,
-    )
+  addSaleItem(productInfo: object): Observable<any> {
+    return this._HttpClient.post(
+      `${environment.baseUrl}/api/saleItems`,
+      productInfo
+    );
   }
 
-
-  updateSaleItem(productId:string| number , productInfo:object):Observable<any> {
-    return this._HttpClient.put(`${environment.baseUrl}/api/saleItems/${productId}` ,
-      productInfo ,
-    )
+  updateSaleItem(
+    productId: string | number,
+    productInfo: object
+  ): Observable<any> {
+    return this._HttpClient.put(
+      `${environment.baseUrl}/api/saleItems/${productId}`,
+      productInfo
+    );
   }
 
-
-
-  deleteSaleProduct(productId:string| number):Observable<any> {
-    return this._HttpClient.delete(`${environment.baseUrl}/api/saleItems/${productId}` ,
-    )
+  deleteSaleProduct(productId: string | number): Observable<any> {
+    return this._HttpClient.delete(
+      `${environment.baseUrl}/api/saleItems/${productId}`
+    );
   }
 }

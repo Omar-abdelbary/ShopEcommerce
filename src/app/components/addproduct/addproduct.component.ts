@@ -42,7 +42,7 @@ export class AddproductComponent {
 
       this._AllproductsService.addProduct(this.AddProductForm.value).subscribe({
         next:(res)=>{
-          console.log(res);
+          // console.log(res);
 
           if (res.message === "Product created successfully") {
 
