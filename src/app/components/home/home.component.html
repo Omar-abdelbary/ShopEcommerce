@@ -92,7 +92,12 @@
       </div>
 
 
-      <div class="products">
+
+
+      @if (AllProducts()) {
+
+
+          <div class="products">
         <div class="row">
           @for (product of AllProducts().slice(0 , 16); track product.product_id) {
           <div class="col-lg-3 col-sm-12 col-md-3">
@@ -120,6 +125,9 @@
         </div>
       </div>
 
+      }
+
+
 
     </div>
 
@@ -136,7 +144,12 @@
 
 
 
-      <div class="sale-items-info">
+
+
+      @if (AllItems()) {
+
+
+             <div class="sale-items-info">
         <div class="row">
           @for (item of AllItems(); track item.product_id) {
           <div class="col-lg-3 col-sm-12 col-md-4">
@@ -159,6 +172,8 @@
           }
         </div>
       </div>
+      }
+
     </div>
 
 
