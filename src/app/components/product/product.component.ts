@@ -63,17 +63,17 @@ export class ProductComponent implements OnInit {
     // get productId
     this._ActivatedRoute.paramMap.subscribe({
       next: (p) => {
-        // console.log(p);
 
-        // let ProductId = p.get("id") ;
+        // product id
         this.productId.set(p.get('id'));
 
         // get product details
         this._AllproductsService.getProductById(this.productId()).subscribe({
           next: (res) => {
+            // get all productdetails and all imgages product
             this.ProductDetails.set(res.data);
             this.productImages.set(res.data.images);
-            // console.log(this.ProductDetails ());
+
           },
 
           error(err: HttpErrorResponse) {
@@ -153,6 +153,8 @@ export class ProductComponent implements OnInit {
     ],
   });
 
+
+  // add review for product 
   addReviewSubmit() {
     if (this.addReviewForm.valid) {
       this._ReviewService

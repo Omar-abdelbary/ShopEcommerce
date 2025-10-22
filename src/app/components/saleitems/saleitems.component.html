@@ -18,9 +18,11 @@
 
 
 
+
+
     <div class="sale-items-info">
       <div class="row">
-        @for (item of AllItems(); track item.product_id) {
+        @for (item of AllItems(); track item.sale_id) {
         <div class="col-lg-3 col-sm-12 col-md-4">
           <div class="item">
             <img [src]="item.product.main_image" class="img-fluid" alt="">
@@ -47,6 +49,7 @@
           </div>
         </div>
         }
+
       </div>
     </div>
 

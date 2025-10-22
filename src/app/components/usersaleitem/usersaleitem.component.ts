@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { SaleitemsService } from '../../core/services/saleitems.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { log } from 'console';
 import { Isaleitem } from '../../core/interfaces/isaleitem';
 import { CurrencyPipe } from '@angular/common';
 
@@ -40,7 +39,7 @@ export class UsersaleitemComponent implements OnInit {
         if (res.message === "Sale items retrieved successfully") {
 
           this.AllItems.set(res.data) ;
-          console.log(this.AllItems());
+          // console.log(this.AllItems());
 
 
         }
