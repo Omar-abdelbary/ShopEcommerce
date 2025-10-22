@@ -12,9 +12,9 @@ export class AllproductsService {
 
 
 
-  // getAllProducts() :Observable<any> {
-  //   return this._HttpClient.get(`${environment.baseUrl}/api/products?limit=90`)
-  // }
+  getAllProducts() :Observable<any> {
+    return this._HttpClient.get(`${environment.baseUrl}/api/products?limit=90`)
+  }
 
 
 
