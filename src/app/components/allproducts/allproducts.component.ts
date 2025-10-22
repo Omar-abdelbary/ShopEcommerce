@@ -56,51 +56,36 @@ export class AllproductsComponent implements OnInit {
 
 
 
-     this.getProducts();
-
+this.getAllProducts(this.currentPage(), this.limit());
+  this.getTotalCount();
   }
 
 
 
+  getAllProducts(page: number, limit: number) {
+  this._AllproductsService.getAllProduct( page , limit).subscribe({
+    next: (res: any) => {
+      this.Allproducts.set(res.data);
+      this.totalItems.set(res.total_items);
+    },
+    error: (err) => console.error(err)
+  });
+}
 
-    getProducts() {
-    this.isLoading.set(true);
 
-    this._AllproductsService.getAllProduct( this.currentPage() , this.limit())
-      .subscribe({
-        next: (res: any) => {
-          this.Allproducts.set(res.data);
-          this.totalItems.set(res.total_items);
-          this.totalPages.set(Math.ceil(res.total_items / this.limit()));
-          this.isLoading.set(false);
-        },
-        error: (err) => {
-          console.error(err);
-          this.isLoading.set(false);
-        },
-      });
-  }
 
-  nextPage() {
-    if (this.currentPage() < this.totalPages()) {
-      this.currentPage.update((old) => old + 1);
-      this.getProducts();
-    }
-  }
 
-  prevPage() {
-    if (this.currentPage() > 1) {
-      this.currentPage.update((old) => old - 1);
-      this.getProducts();
-    }
-  }
+getTotalCount() {
+  this._AllproductsService.getAllProductCount().subscribe({
+    next: (res: any) => {
+      // نستخدم البيانات الجاية من السيرفر مباشرة
+      this.totalItems.set(res.total_products);
+      this.totalPages.set(res.number_of_pages);
+    },
+    error: (err) => console.error(err)
+  });
+}
 
-  changeLimit(event: Event) {
-    const value = Number((event.target as HTMLSelectElement).value);
-    this.limit.set(value);
-    this.currentPage.set(1);
-    this.getProducts();
-  }
 
 
 

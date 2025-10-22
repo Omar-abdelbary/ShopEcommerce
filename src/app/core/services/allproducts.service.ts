@@ -4,86 +4,59 @@ import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AllproductsService {
+  constructor(private readonly _HttpClient: HttpClient) {}
 
-  constructor(private readonly _HttpClient : HttpClient) { } ;
-
-
-
-  getAllProducts() :Observable<any> {
-    return this._HttpClient.get(`${environment.baseUrl}/api/products?limit=90`)
+  getAllProducts(): Observable<any> {
+    return this._HttpClient.get(`${environment.baseUrl}/api/products?limit=90`);
   }
 
-
-
-  
-
-
-    getAllProduct(page: number, limit: number) {
+  getAllProduct(page: number, limit: number): Observable<any> {
   return this._HttpClient.get(`${environment.baseUrl}/api/products?page=${page}&limit=${limit}`);
 }
 
-
-
-
-
-
-  getProductById(productId:string| number |null):Observable<any> {
-    return this._HttpClient.get(`${environment.baseUrl}/api/products/${productId}`)
+  getAllProductCount(): Observable<any> {
+    return this._HttpClient.get(`${environment.baseUrl}/api/products/count`);
   }
 
-
-
-  addProduct(productDetails:object):Observable<any> {
-    return this._HttpClient.post(`${environment.baseUrl}/api/products` , productDetails ,
-
-    )
+  getProductById(productId: string | number | null): Observable<any> {
+    return this._HttpClient.get(
+      `${environment.baseUrl}/api/products/${productId}`
+    );
   }
 
-
-
-  updateProduct(productId:number| null | string , productDetails:object ):Observable<any> {
-    return this._HttpClient.put(`${environment.baseUrl}/api/products/${productId}` ,
-      productDetails ,
-
-    )
+  addProduct(productDetails: object): Observable<any> {
+    return this._HttpClient.post(
+      `${environment.baseUrl}/api/products`,
+      productDetails
+    );
   }
 
-
-  addImgForProduct(infoImg:object , productId:string | number| null):Observable<any> {
-    return this._HttpClient.post(`${environment.baseUrl}/api/products/${productId}/images` ,
-      infoImg ,
-
-    )
+  updateProduct(
+    productId: number | null | string,
+    productDetails: object
+  ): Observable<any> {
+    return this._HttpClient.put(
+      `${environment.baseUrl}/api/products/${productId}`,
+      productDetails
+    );
   }
 
+  addImgForProduct(
+    infoImg: object,
+    productId: string | number | null
+  ): Observable<any> {
+    return this._HttpClient.post(
+      `${environment.baseUrl}/api/products/${productId}/images`,
+      infoImg
+    );
+  }
 
-
-deleteProduct(ProductId:String | number):Observable<any> {
-  return this._HttpClient.delete(`${environment.baseUrl}/api/products/${ProductId}` ,
-
-  )
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  deleteProduct(ProductId: String | number): Observable<any> {
+    return this._HttpClient.delete(
+      `${environment.baseUrl}/api/products/${ProductId}`
+    );
+  }
 }
