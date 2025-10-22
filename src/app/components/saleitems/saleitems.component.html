@@ -25,6 +25,7 @@
         @for (item of AllItems(); track item.sale_id) {
         <div class="col-lg-3 col-sm-12 col-md-4">
           <div class="item">
+
             <img [src]="item.product.main_image" class="img-fluid" alt="">
             <h3>{{item.product.name}}</h3>
             <p>{{item.product.description?.slice(0 , 20)}}</p>
