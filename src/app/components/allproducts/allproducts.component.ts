@@ -73,6 +73,20 @@ this.getAllProducts(this.currentPage(), this.limit());
 }
 
 
+prevPage() {
+  if (this.currentPage() > 1) {
+    this.currentPage.update(p => p - 1);
+    this.getAllProducts(this.currentPage(), this.limit());
+  }
+}
+
+nextPage() {
+  if (this.currentPage() < this.totalPages()) {
+    this.currentPage.update(p => p + 1);
+    this.getAllProducts(this.currentPage(), this.limit());
+  }
+}
+
 
 
 getTotalCount() {
