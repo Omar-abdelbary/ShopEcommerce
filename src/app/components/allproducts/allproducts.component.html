@@ -1,4 +1,4 @@
-@if (Allproducts()) {
+<!-- @if (Allproducts()) {
 
 
 <section class="all-products-info">
@@ -106,6 +106,74 @@
 
 
 
+  </div>
+</section>
+} -->
+
+
+
+
+
+
+
+
+@if (Allproducts()) {
+<section class="all-products-info">
+  <div class="container-fluid">
+    <div class="col-12">
+      <div class="all-products-head">
+        <h2>AllProducts:</h2>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="products">
+        <div class="row">
+          @for (product of Allproducts(); track product.product_id) {
+          <div class="col-lg-3 col-sm-12 col-md-4">
+            <div class="product">
+              <img [src]="product.main_image" class="img-fluid" alt="prodcut img">
+              <h5>{{ product.name.slice(0, 15) }}</h5>
+              <p>{{ product.brand }}</p>
+
+              <div class="d-flex justify-content-around">
+                <p>{{ product.price | currency: 'GBP' }}</p>
+
+                <div class="rating">
+                  @for (num of [1, 2, 3, 4, 5].slice(0, product.average_rating); track $index) {
+                    <i class="fa-solid fa-star rating-color"></i>
+                  }
+                  @if (product.average_rating % 1 !== 0) {
+                    <i class="fa-solid fa-star-half-stroke rating-color"></i>
+                  }
+                  <span>{{ product.average_rating }}</span>
+                </div>
+              </div>
+
+              <button class="btn" (click)="addItemCart(product.product_id)">
+                <i class="fa-solid fa-cart-plus"></i> AddToCart
+              </button>
+
+              <div class="icons">
+                <i class="fa-solid fa-eye" [routerLink]="['/product', product.product_id]"></i>
+                <i class="fa-solid fa-shield-heart" (click)="addWishlist(product.product_id)"></i>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- هنا الباجنيشن -->
+    <div class="pagination-wrapper">
+      <p-paginator
+        [rows]="rows"
+        [totalRecords]="totalItems()"
+        [rowsPerPageOptions]="[8, 12, 16]"
+        (onPageChange)="onPageChange($event)"
+      ></p-paginator>
+    </div>
   </div>
 </section>
 }

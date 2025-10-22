@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
@@ -12,9 +12,19 @@ export class AllproductsService {
 
 
 
-  getAllProducts() :Observable<any> {
-    return this._HttpClient.get(`${environment.baseUrl}/api/products?limit=90`)
+  // getAllProducts() :Observable<any> {
+  //   return this._HttpClient.get(`${environment.baseUrl}/api/products?limit=90`)
+  // }
+
+
+
+    getProducts(page = 1, limit = 10): Observable<any> {
+    const params = new HttpParams()
+      .set('page', page)
+      .set('limit', limit);
+    return this._HttpClient.get(`${environment.baseUrl}/api/products`, { params });
   }
+
 
 
 
@@ -28,7 +38,7 @@ export class AllproductsService {
 
   addProduct(productDetails:object):Observable<any> {
     return this._HttpClient.post(`${environment.baseUrl}/api/products` , productDetails ,
-      
+
     )
   }
 
