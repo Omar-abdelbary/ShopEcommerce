@@ -141,10 +141,10 @@
 
                 <div class="rating">
                   @for (num of [1, 2, 3, 4, 5].slice(0, product.average_rating); track $index) {
-                    <i class="fa-solid fa-star rating-color"></i>
+                  <i class="fa-solid fa-star rating-color"></i>
                   }
                   @if (product.average_rating % 1 !== 0) {
-                    <i class="fa-solid fa-star-half-stroke rating-color"></i>
+                  <i class="fa-solid fa-star-half-stroke rating-color"></i>
                   }
                   <span>{{ product.average_rating }}</span>
                 </div>
@@ -165,16 +165,21 @@
       </div>
     </div>
 
-    <!-- هنا الباجنيشن -->
-    <div class="pagination-wrapper">
-      <p-paginator
-  [rows]="limit"
-  [totalRecords]="totalItems"
-  [rowsPerPageOptions]="[10, 20, 50]"
-  (onPageChange)="onPageChange($event)"
-  styleClass="custom-paginator"
-></p-paginator>
+
+
+
+
+
+
+    <div class="pagination-container">
+      <p-paginator [rows]="limit" [totalRecords]="totalItems" [rowsPerPageOptions]="[4, 8, 12, 16]"
+        (onPageChange)="onPageChange($event)">
+      </p-paginator>
     </div>
+
+
+
+
   </div>
 </section>
 }

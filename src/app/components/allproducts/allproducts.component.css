@@ -286,59 +286,68 @@
   margin-left: 3px;
 }
 
-/* الباجنيشن */
-.pagination-wrapper {
+
+
+
+
+
+
+
+
+
+
+
+
+/* Pagination styling */
+.pagination-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 40px 0 20px 0;
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f3f0ff;
+  border-top: 2px solid blueviolet;
+  border-bottom: 2px solid blueviolet;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
-.custom-paginator {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-  padding: 10px 0;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+/* PrimeNG pagination customization */
+.p-paginator {
+  background: transparent !important;
+  border: none !important;
+  color: blueviolet !important;
 }
 
-.custom-paginator .p-paginator-pages .p-paginator-page {
+.p-paginator .p-paginator-pages .p-paginator-page {
+  background-color: white !important;
+  color: blueviolet !important;
   border-radius: 8px;
   margin: 0 3px;
-  color: #333;
+  transition: all 0.3s ease;
   font-weight: 500;
-  transition: all 0.2s ease;
 }
 
-.custom-paginator .p-paginator-pages .p-paginator-page.p-highlight {
-  background-color: #0d6efd;
-  color: white;
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: blueviolet !important;
+  color: #fff !important;
+  font-weight: bold;
+  transform: scale(1.05);
 }
 
-.custom-paginator .p-paginator-pages .p-paginator-page:hover {
-  background-color: #0d6efd22;
+.p-paginator .p-paginator-pages .p-paginator-page:hover {
+  background-color: rgba(138, 43, 226, 0.15) !important;
 }
 
-.custom-paginator .p-paginator-first,
-.custom-paginator .p-paginator-prev,
-.custom-paginator .p-paginator-next,
-.custom-paginator .p-paginator-last {
-  border-radius: 50%;
-  color: #0d6efd;
-  transition: background-color 0.2s ease;
-}
-
-.custom-paginator .p-paginator-first:hover,
-.custom-paginator .p-paginator-prev:hover,
-.custom-paginator .p-paginator-next:hover,
-.custom-paginator .p-paginator-last:hover {
-  background-color: #0d6efd22;
-}
-
-.custom-paginator .p-dropdown {
-  border-radius: 8px;
-  border-color: #ccc;
+/* Dropdown (rows per page) */
+.p-paginator .p-dropdown {
+  border-radius: 8px !important;
+  border: 1px solid blueviolet !important;
+  background-color: white !important;
+  color: blueviolet !important;
   font-weight: 500;
+}
+
+.p-paginator .p-dropdown:hover {
+  box-shadow: 0 0 8px rgba(138, 43, 226, 0.4);
 }
