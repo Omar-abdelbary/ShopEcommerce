@@ -30,12 +30,11 @@ export class AllproductsComponent implements OnInit {
 
 
 
+   currentPage = signal(1);
   totalItems = signal(0);
-  loading = signal(false);
-  rows = 8;
-  limit = 10;
-page = 1;
-// totalItems = 0;
+  limit = signal(10);
+  totalPages = signal(0);
+  isLoading = signal(false);
 
 
 
@@ -61,47 +60,47 @@ page = 1;
 
   }
 
-   getProducts() {
-    this._AllproductsService.getAllProduct(this.page, this.limit).subscribe({
-      next: (res: any) => {
-        this.Allproducts.set(res.data);
-        this.totalItems = res.total_items;
-      },
-      error: (err: HttpErrorResponse) => {
-        console.error(err);
-      },
-    });
+
+
+
+    getProducts() {
+    this.isLoading.set(true);
+
+    this._AllproductsService.getAllProduct( this.currentPage() , this.limit())
+      .subscribe({
+        next: (res: any) => {
+          this.Allproducts.set(res.data);
+          this.totalItems.set(res.total_items);
+          this.totalPages.set(Math.ceil(res.total_items / this.limit()));
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          console.error(err);
+          this.isLoading.set(false);
+        },
+      });
   }
 
-   loadPage(page: number) {
-    this.loading.set(true);
-    this._AllproductsService.getAllProduct(page, this.rows).subscribe({
-      next:(res:any)=> {
-        this.Allproducts.set(res.data);
-        this.totalItems.set(res.total_items);
-        this.loading.set(false);
-      },
-      error: (err:HttpErrorResponse) => {
-        console.error(err);
-        this.loading.set(false);
-      }
-    });
+  nextPage() {
+    if (this.currentPage() < this.totalPages()) {
+      this.currentPage.update((old) => old + 1);
+      this.getProducts();
+    }
   }
 
-
-  //   onPageChange(event: any) {
-  //   const page = (event.page ?? Math.floor(event.first / event.rows)) + 1;
-  //   this.rows = event.rows;
-  //   this.loadPage(page);
-  // }
-
-
-  onPageChange(event: any) {
-    this.page = event.page + 1;
-    this.limit = event.rows;
-    this.getProducts(); // استدعاء الفنكشن من جديد
+  prevPage() {
+    if (this.currentPage() > 1) {
+      this.currentPage.update((old) => old - 1);
+      this.getProducts();
+    }
   }
 
+  changeLimit(event: Event) {
+    const value = Number((event.target as HTMLSelectElement).value);
+    this.limit.set(value);
+    this.currentPage.set(1);
+    this.getProducts();
+  }
 
 
 
