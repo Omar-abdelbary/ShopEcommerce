@@ -46,7 +46,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this._CartService.getCart().subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
 
         if (res.message === 'Cart retrieved successfully') {
           this.AllItems.set(res.data);
@@ -66,7 +66,7 @@ export class CartComponent implements OnInit {
   removeAllItems() {
     this._CartService.deleteAllItems().subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
 
         if (res.message === 'All items removed from cart') {
           this.AllItems.set([]);
