@@ -81,6 +81,7 @@ export class SaleitemsComponent implements OnInit {
 
 
 
+  // <input id="main_image" type="text" class="swal2-input" placeholder="Main Image URL">
 
   // add sale item
 addProduct(): void {
@@ -91,7 +92,7 @@ addProduct(): void {
       <input id="discount_percent" type="number" class="swal2-input" placeholder="Discount Percent (0-100)">
       <input id="start_date" type="date" class="swal2-input" placeholder="Start Date">
       <input id="end_date" type="date" class="swal2-input" placeholder="End Date">
-      // <input id="main_image" type="text" class="swal2-input" placeholder="Main Image URL">
+
 
     `,
     focusConfirm: false,
