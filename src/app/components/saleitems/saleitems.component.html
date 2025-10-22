@@ -41,7 +41,7 @@
             <!-- icons تظهر عند hover -->
             <div class="hover-icons">
 
-              <!-- <i class="fa-solid fa-pen-to-square edit-icon  bg-primary"></i> -->
+              <i class="fa-solid fa-pen-to-square edit-icon  bg-primary"  (click)="updateItem(item.sale_id)"></i>
               <i class="fa-solid fa-trash delete-icon  bg-danger"  (click)="deleteItem(item.sale_id)"></i>
             </div>
 

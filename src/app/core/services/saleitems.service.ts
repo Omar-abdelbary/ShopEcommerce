@@ -21,7 +21,7 @@ export class SaleitemsService {
   }
 
   updateSaleItem(
-    productId: string | number,
+    productId: string | number | null,
     productInfo: object
   ): Observable<any> {
     return this._HttpClient.put(
