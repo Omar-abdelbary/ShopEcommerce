@@ -262,17 +262,20 @@
 }
 
 .all-products-info .products .product .icons i {
-  background-color: rgba(0, 0, 0, 0.6);
+   background-color: rgba(0,0,0,0.6);
   border: none;
   border-radius: 50%;
   color: #fff;
-  padding: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 30px !important;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 .all-products-info .products .product .icons i:hover {
-  transform: scale(1.1);
+ transform: scale(1.1);
   background-color: #000;
 }
 
