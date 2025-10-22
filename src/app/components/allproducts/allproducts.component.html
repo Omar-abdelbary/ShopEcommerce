@@ -168,11 +168,12 @@
     <!-- هنا الباجنيشن -->
     <div class="pagination-wrapper">
       <p-paginator
-        [rows]="rows"
-        [totalRecords]="totalItems()"
-        [rowsPerPageOptions]="[8, 12, 16]"
-        (onPageChange)="onPageChange($event)"
-      ></p-paginator>
+  [rows]="limit"
+  [totalRecords]="totalItems"
+  [rowsPerPageOptions]="[10, 20, 50]"
+  (onPageChange)="onPageChange($event)"
+  styleClass="custom-paginator"
+></p-paginator>
     </div>
   </div>
 </section>

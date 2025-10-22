@@ -33,6 +33,9 @@ export class AllproductsComponent implements OnInit {
   totalItems = signal(0);
   loading = signal(false);
   rows = 8;
+  limit = 10;
+page = 1;
+// totalItems = 0;
 
 
 
@@ -54,19 +57,31 @@ export class AllproductsComponent implements OnInit {
 
 
 
-     this.loadPage(1);
+     this.getProducts();
 
+  }
+
+   getProducts() {
+    this._AllproductsService.getAllProduct(this.page, this.limit).subscribe({
+      next: (res: any) => {
+        this.Allproducts.set(res.data);
+        this.totalItems = res.total_items;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.error(err);
+      },
+    });
   }
 
    loadPage(page: number) {
     this.loading.set(true);
-    this._AllproductsService.getProducts(page, this.rows).subscribe({
-      next: res => {
+    this._AllproductsService.getAllProduct(page, this.rows).subscribe({
+      next:(res:any)=> {
         this.Allproducts.set(res.data);
         this.totalItems.set(res.total_items);
         this.loading.set(false);
       },
-      error: err => {
+      error: (err:HttpErrorResponse) => {
         console.error(err);
         this.loading.set(false);
       }
@@ -74,10 +89,17 @@ export class AllproductsComponent implements OnInit {
   }
 
 
-    onPageChange(event: any) {
-    const page = (event.page ?? Math.floor(event.first / event.rows)) + 1;
-    this.rows = event.rows;
-    this.loadPage(page);
+  //   onPageChange(event: any) {
+  //   const page = (event.page ?? Math.floor(event.first / event.rows)) + 1;
+  //   this.rows = event.rows;
+  //   this.loadPage(page);
+  // }
+
+
+  onPageChange(event: any) {
+    this.page = event.page + 1;
+    this.limit = event.rows;
+    this.getProducts(); // استدعاء الفنكشن من جديد
   }
 
 

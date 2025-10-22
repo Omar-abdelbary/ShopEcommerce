@@ -18,12 +18,12 @@ export class AllproductsService {
 
 
 
-    getProducts(page = 1, limit = 10): Observable<any> {
-    const params = new HttpParams()
-      .set('page', page)
-      .set('limit', limit);
-    return this._HttpClient.get(`${environment.baseUrl}/api/products`, { params });
-  }
+  
+
+
+    getAllProduct(page: number, limit: number) {
+  return this._HttpClient.get(`${environment.baseUrl}/api/products?page=${page}&limit=${limit}`);
+}
 
 
 

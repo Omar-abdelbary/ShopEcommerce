@@ -294,13 +294,51 @@
   margin: 40px 0 20px 0;
 }
 
-:host ::ng-deep .p-paginator {
-  background: transparent;
-  border: none;
+.custom-paginator {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 10px 0;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-:host ::ng-deep .p-paginator .p-paginator-page.p-highlight {
-  background-color: rebeccapurple;
-  border-color: rebeccapurple;
-  color: #fff;
+.custom-paginator .p-paginator-pages .p-paginator-page {
+  border-radius: 8px;
+  margin: 0 3px;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.custom-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.custom-paginator .p-paginator-pages .p-paginator-page:hover {
+  background-color: #0d6efd22;
+}
+
+.custom-paginator .p-paginator-first,
+.custom-paginator .p-paginator-prev,
+.custom-paginator .p-paginator-next,
+.custom-paginator .p-paginator-last {
+  border-radius: 50%;
+  color: #0d6efd;
+  transition: background-color 0.2s ease;
+}
+
+.custom-paginator .p-paginator-first:hover,
+.custom-paginator .p-paginator-prev:hover,
+.custom-paginator .p-paginator-next:hover,
+.custom-paginator .p-paginator-last:hover {
+  background-color: #0d6efd22;
+}
+
+.custom-paginator .p-dropdown {
+  border-radius: 8px;
+  border-color: #ccc;
+  font-weight: 500;
 }
