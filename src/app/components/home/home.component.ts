@@ -1,9 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import {
+  AfterViewInit,
   Component,
+  ElementRef,
   inject,
   OnInit,
+  PLATFORM_ID,
   signal,
+  ViewChild,
   WritableSignal,
 } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
@@ -12,7 +16,7 @@ import { CategoriesService } from '../../core/services/categories.service';
 import { Icategory } from '../../core/interfaces/icategory';
 import { AllproductsService } from '../../core/services/allproducts.service';
 import { Iproducts } from '../../core/interfaces/iproducts';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { WishlistService } from '../../core/services/wishlist.service';
 import { ToastrService } from 'ngx-toastr';
@@ -21,6 +25,7 @@ import { SaleitemsService } from '../../core/services/saleitems.service';
 import { Isaleitem } from '../../core/interfaces/isaleitem';
 import { AuthService } from '../../core/services/auth.service';
 import { take } from 'rxjs';
+import gsap from 'gsap';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +35,7 @@ import { take } from 'rxjs';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
+  private readonly _PLATFORM_ID = inject(PLATFORM_ID);
   private readonly _ActivatedRoute = inject(ActivatedRoute);
   private readonly _AuthService = inject(AuthService);
   private readonly _Router = inject(Router);
@@ -129,10 +135,6 @@ export class HomeComponent implements OnInit {
   };
 
   ngOnInit(): void {
-
-
-
-
     //   get token from url
     this._ActivatedRoute.queryParams.pipe(take(1)).subscribe((params) => {
       const token = params['token'];
@@ -187,6 +189,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // add item to wishlist
   additemWishlist(productId: number) {
     this._WishlistService.addWishlistItem(productId).subscribe({
       next: (res) => {
@@ -194,7 +197,25 @@ export class HomeComponent implements OnInit {
 
         if (res.message === 'Product added to wishlist') {
           this._ToastrService.success(res.message, 'Euphoria Folks Pvt Ltd');
-          this._WishlistService.WishListNumbers.set(res.total_items) ;
+          this._WishlistService.WishListNumbers.set(res.total_items);
+        }
+      },
+
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      },
+    });
+  }
+
+  // add item to cart
+
+  addProduct(productId: string | number) {
+    this._CartService.addCart(productId).subscribe({
+      next: (res) => {
+        // console.log(res);
+        if (res.message === 'Item added to cart') {
+          this._ToastrService.success(res.message, 'Euphoria Folks Pvt Ltd');
+          this._CartService.CartNumbers.set(res.total_quantity);
         }
       },
 
@@ -205,28 +226,4 @@ export class HomeComponent implements OnInit {
   }
 
 
-
-
-  // add item to cart
-
-  addProduct(productId:string|number ) {
-    this._CartService.addCart(productId).subscribe({
-      next:(res)=>{
-        // console.log(res);
-          if (res.message === "Item added to cart") {
-
-
-        this._ToastrService.success(res.message , "Euphoria Folks Pvt Ltd") ;
-        this._CartService.CartNumbers.set(res.total_quantity) ;
-
-      }
-
-      },
-
-      error:(err:HttpErrorResponse)=>{
-        console.log(err);
-
-      }
-    })
-  }
 }
