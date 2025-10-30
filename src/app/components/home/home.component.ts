@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import {
   AfterViewInit,
   Component,
+  DestroyRef,
   ElementRef,
   inject,
   OnInit,
@@ -26,6 +27,7 @@ import { Isaleitem } from '../../core/interfaces/isaleitem';
 import { AuthService } from '../../core/services/auth.service';
 import { take } from 'rxjs';
 import gsap from 'gsap';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-home',
@@ -45,6 +47,7 @@ export class HomeComponent implements OnInit {
   private readonly _WishlistService = inject(WishlistService);
   private readonly _CartService = inject(CartService);
   private readonly _ToastrService = inject(ToastrService);
+  private readonly _DestroyRef = inject(DestroyRef) ;
 
   AllCategories: WritableSignal<Icategory[]> = signal([]);
   AllProducts: WritableSignal<Iproducts[]> = signal([]);
@@ -136,20 +139,20 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     //   get token from url
-    this._ActivatedRoute.queryParams.pipe(take(1)).subscribe((params) => {
-      const token = params['token'];
-      if (token) {
-        localStorage.setItem('userToken', token);
+    // this._ActivatedRoute.queryParams.pipe(take(1)).subscribe((params) => {
+    //   const token = params['token'];
+    //   if (token) {
+    //     localStorage.setItem('userToken', token);
 
-        setTimeout(() => {
-          this._AuthService.Token();
-          this._Router.navigate([], { queryParams: {}, replaceUrl: true });
-        }, 0);
-      }
-    });
+    //     setTimeout(() => {
+    //       this._AuthService.Token();
+    //       this._Router.navigate([], { queryParams: {}, replaceUrl: true });
+    //     }, 0);
+    //   }
+    // });
 
     // get allcategories
-    this._CategoriesService.getAllCategories().subscribe({
+    this._CategoriesService.getAllCategories().pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         // console.log(res.data);
         this.AllCategories.set(res.data);
@@ -161,7 +164,7 @@ export class HomeComponent implements OnInit {
     });
 
     // get all products
-    this._AllproductsService.getAllProducts().subscribe({
+    this._AllproductsService.getAllProducts().pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         this.AllProducts.set(res.data);
         // console.log(this.AllProducts());
@@ -174,7 +177,7 @@ export class HomeComponent implements OnInit {
 
     // get all sale items
 
-    this._SaleitemsService.getAllItemsSale().subscribe({
+    this._SaleitemsService.getAllItemsSale().pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         // console.log(res);
         if (res.message === 'Sale items retrieved successfully') {
@@ -191,7 +194,7 @@ export class HomeComponent implements OnInit {
 
   // add item to wishlist
   additemWishlist(productId: number) {
-    this._WishlistService.addWishlistItem(productId).subscribe({
+    this._WishlistService.addWishlistItem(productId).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         // console.log(res);
 
@@ -210,7 +213,7 @@ export class HomeComponent implements OnInit {
   // add item to cart
 
   addProduct(productId: string | number) {
-    this._CartService.addCart(productId).subscribe({
+    this._CartService.addCart(productId).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         // console.log(res);
         if (res.message === 'Item added to cart') {
