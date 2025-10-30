@@ -1,10 +1,11 @@
 import { ToastrService } from 'ngx-toastr';
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, DestroyRef, inject, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-loginadmin',
@@ -24,6 +25,7 @@ export class LoginadminComponent {
     private readonly _Router = inject(Router) ;
     private readonly _AuthService = inject(AuthService) ;
     private readonly _ToastrService = inject(ToastrService) ;
+    private readonly _DestroyRef = inject(DestroyRef) ;
 
 
 
@@ -41,7 +43,7 @@ export class LoginadminComponent {
     loginAdminSubmit() {
       if (this.loginAsAdminForm.valid) {
 
-        this._AuthService.loginAsAdmin(this.loginAsAdminForm.value).subscribe({
+        this._AuthService.loginAsAdmin(this.loginAsAdminForm.value).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
           next:(res)=>{
             // console.log(res);
             this._ToastrService.success(res.message , "Euphoria Folks Pvt Ltd") ;

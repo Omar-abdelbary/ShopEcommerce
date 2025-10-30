@@ -1,5 +1,6 @@
 import {
   Component,
+  DestroyRef,
   inject,
   OnInit,
   signal,
@@ -12,6 +13,7 @@ import { CurrencyPipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-cart',
@@ -40,11 +42,12 @@ import { RouterLink } from '@angular/router';
 export class CartComponent implements OnInit {
   private readonly _CartService = inject(CartService);
   private readonly _ToastrService = inject(ToastrService);
+  private readonly _DestroyRef = inject(DestroyRef) ;
   AllItems: WritableSignal<Iitemcart[] | null> = signal(null);
   TotalPrice: WritableSignal<string | number> = signal('');
 
   ngOnInit(): void {
-    this._CartService.getCart().subscribe({
+    this._CartService.getCart().pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         // console.log(res);
 
@@ -64,7 +67,7 @@ export class CartComponent implements OnInit {
 
   // remove all items
   removeAllItems() {
-    this._CartService.deleteAllItems().subscribe({
+    this._CartService.deleteAllItems().pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         // console.log(res);
 
@@ -84,7 +87,7 @@ export class CartComponent implements OnInit {
 
   // remove item
   removeItem(cartId: string | number) {
-    this._CartService.deleteItem(cartId).subscribe({
+    this._CartService.deleteItem(cartId).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         if (res.message === 'Cart item removed successfully') {
           this._CartService.CartNumbers.update(n => n - 1) ;
@@ -118,7 +121,7 @@ export class CartComponent implements OnInit {
     productId: string | number,
     quantity: number | string
   ) {
-    this._CartService.updateCartItem(cartId, productId, quantity).subscribe({
+    this._CartService.updateCartItem(cartId, productId, quantity).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         // console.log(res);
 
@@ -147,7 +150,7 @@ export class CartComponent implements OnInit {
   // payment details
 
   payment() {
-    this._CartService.paymentByVisa().subscribe({
+    this._CartService.paymentByVisa().pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next:(res)=>{
         console.log(res);
 

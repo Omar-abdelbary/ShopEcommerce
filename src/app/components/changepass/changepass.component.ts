@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class ChangepassComponent {
   private readonly _AuthService = inject(AuthService) ;
   private readonly _ToastrService = inject(ToastrService) ;
   private readonly _Router = inject(Router) ;
+  private readonly _DestroyRef = inject(DestroyRef) ;
 
 
   changePassForm:FormGroup = this._FormBuilder.group({
@@ -36,7 +38,7 @@ export class ChangepassComponent {
 
     if (this.changePassForm.valid) {
 
-      this._AuthService.changePassword(this.changePassForm.value).subscribe({
+      this._AuthService.changePassword(this.changePassForm.value).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
         next:(res)=>{
           // console.log(res);
 

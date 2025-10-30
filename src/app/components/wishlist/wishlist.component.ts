@@ -1,5 +1,6 @@
 import {
   Component,
+  DestroyRef,
   inject,
   OnInit,
   signal,
@@ -12,6 +13,7 @@ import { Iwishlist } from '../../core/interfaces/iwishlist';
 import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-wishlist',
@@ -42,7 +44,7 @@ export class WishlistComponent implements OnInit {
 
 
 
-
+private readonly _DestroyRef = inject(DestroyRef) ;
   private readonly _WishlistService = inject(WishlistService);
 
   private readonly _ToastrService = inject(ToastrService);
@@ -55,7 +57,7 @@ export class WishlistComponent implements OnInit {
 
   // get all items in the component careation
   ngOnInit(): void {
-    this._WishlistService.getWishlist().subscribe({
+    this._WishlistService.getWishlist().pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         console.log(res);
 
@@ -78,7 +80,7 @@ export class WishlistComponent implements OnInit {
 
   // delete item in the wishlist
   removeItem(itemId: number) {
-    this._WishlistService.deleteItem(itemId).subscribe({
+    this._WishlistService.deleteItem(itemId).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         // console.log(res);
         if (res.message === 'Product removed from wishlist') {
@@ -102,7 +104,7 @@ export class WishlistComponent implements OnInit {
 
   // delete all items in the wishlist
   removeAllitems() {
-    this._WishlistService.deleteAllItems().subscribe({
+    this._WishlistService.deleteAllItems().pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         console.log(res);
         if (res.message === 'Wishlist cleared successfully') {

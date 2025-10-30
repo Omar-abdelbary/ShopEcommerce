@@ -2,6 +2,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import {
   Component,
+  DestroyRef,
   inject,
   OnInit,
   PLATFORM_ID,
@@ -30,6 +31,7 @@ import {
 import { Ireview } from '../../core/interfaces/ireview';
 import Swal from 'sweetalert2';
 import { CartService } from '../../core/services/cart.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-product',
@@ -52,6 +54,7 @@ export class ProductComponent implements OnInit {
   private readonly _FormBuilder = inject(FormBuilder);
   private readonly _PLATFORM_ID = inject(PLATFORM_ID);
   private readonly _CartService = inject(CartService) ;
+  private readonly _DestroyRef = inject(DestroyRef) ;
 
   ProductDetails: WritableSignal<Specificproduct | null> = signal(null);
   productImages: WritableSignal<Iproductsimages[]> = signal([]);
@@ -68,7 +71,7 @@ export class ProductComponent implements OnInit {
         this.productId.set(p.get('id'));
 
         // get product details
-        this._AllproductsService.getProductById(this.productId()).subscribe({
+        this._AllproductsService.getProductById(this.productId()).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
           next: (res) => {
             // get all productdetails and all imgages product
             this.ProductDetails.set(res.data);
@@ -84,7 +87,7 @@ export class ProductComponent implements OnInit {
 
 
         // get all review product
-        this._ReviewService.getAllReviewProduct(this.productId()).subscribe({
+        this._ReviewService.getAllReviewProduct(this.productId()).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
           next: (res) => {
             // console.log(res);
             if (res.message === 'Reviews retrieved successfully') {
@@ -115,7 +118,7 @@ export class ProductComponent implements OnInit {
 
   // add item to cart
    addProduct(productId:string|number ) {
-    this._CartService.addCart(productId).subscribe({
+    this._CartService.addCart(productId).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next:(res)=>{
         // console.log(res);
           if (res.message === "Item added to cart") {
@@ -154,12 +157,11 @@ export class ProductComponent implements OnInit {
   });
 
 
-  // add review for product 
+  // add review for product
   addReviewSubmit() {
     if (this.addReviewForm.valid) {
       this._ReviewService
-        .AddReview(this.productId(), this.addReviewForm.value)
-        .subscribe({
+        .AddReview(this.productId(), this.addReviewForm.value).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
           next: (res) => {
             console.log(res);
             if (res.message === 'Review created successfully') {
@@ -228,7 +230,7 @@ export class ProductComponent implements OnInit {
           comment: result.value.comment,
         };
 
-        this._ReviewService.updateReview(reviewId, payload).subscribe({
+        this._ReviewService.updateReview(reviewId, payload).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
           next: (res) => {
             Swal.fire({
               icon: 'success',

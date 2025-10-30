@@ -1,5 +1,6 @@
 import {
   Component,
+  DestroyRef,
   inject,
   OnInit,
   signal,
@@ -11,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Iorder } from '../../core/interfaces/iorder';
 import Swal from 'sweetalert2';
 import { CurrencyPipe, DatePipe, NgClass } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-allorders',
   standalone: true,
@@ -21,11 +23,12 @@ import { CurrencyPipe, DatePipe, NgClass } from '@angular/common';
 export class AllordersComponent implements OnInit {
   private readonly _AllordersService = inject(AllordersService);
   private readonly _ToastrService = inject(ToastrService);
+  private readonly _DestroyRef = inject(DestroyRef) ;
 
   Allorders: WritableSignal<Iorder[] | null> = signal(null);
 
   ngOnInit(): void {
-    this._AllordersService.getAllorderAdmin().subscribe({
+    this._AllordersService.getAllorderAdmin().pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         // console.log(res);
 
@@ -44,7 +47,7 @@ export class AllordersComponent implements OnInit {
   }
 
   showOrderDetails(orderId: number) {
-    this._AllordersService.getDetailsOrderAdmin(orderId).subscribe({
+    this._AllordersService.getDetailsOrderAdmin(orderId).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         const order = res.data;
         Swal.fire({

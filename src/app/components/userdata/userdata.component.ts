@@ -1,9 +1,10 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { Userdata } from '../../core/interfaces/userdata';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from "@angular/router";
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-userdata',
@@ -16,6 +17,7 @@ export class UserdataComponent    implements OnInit {
 
 
   private readonly _AuthService = inject(AuthService) ;
+  private readonly _DestroyRef = inject(DestroyRef) ;
 
   UserData:WritableSignal<Userdata | null> = signal(null) ;
 
@@ -24,7 +26,7 @@ export class UserdataComponent    implements OnInit {
 
   ngOnInit(): void {
 
-    this._AuthService.getUserData().subscribe({
+    this._AuthService.getUserData().pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next:(res)=>{
         // console.log(res);
 

@@ -1,9 +1,10 @@
 import { Icategory } from './../../core/interfaces/icategory';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriesService } from '../../core/services/categories.service';
 import { DatePipe } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-category',
@@ -20,6 +21,7 @@ export class CategoryComponent    implements OnInit {
 
   private readonly _ActivatedRoute = inject(ActivatedRoute ) ;
   private readonly _CategoriesService = inject(CategoriesService) ;
+  private readonly _DestroyRef = inject(DestroyRef) ;
     CategoryDetails : Icategory = {} as Icategory ;
 
 
@@ -35,7 +37,7 @@ export class CategoryComponent    implements OnInit {
 
 
 
-        this._CategoriesService.getSpecificCategoryById(CategoryId ).subscribe({
+        this._CategoriesService.getSpecificCategoryById(CategoryId ).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
 
           next:(res)=>{
             // console.log(res.data);

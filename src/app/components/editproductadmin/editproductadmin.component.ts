@@ -1,10 +1,11 @@
 import { NgClass } from '@angular/common';
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal, DestroyRef } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AllproductsService } from '../../core/services/allproducts.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-editproductadmin',
@@ -23,6 +24,7 @@ export class EditproductadminComponent   implements OnInit {
   private readonly _ToastrService = inject(ToastrService) ;
   private readonly _AllproductsService = inject(AllproductsService) ;
   private readonly _ActivatedRoute = inject(ActivatedRoute) ;
+  private readonly _DestroyRef = inject(DestroyRef) ;
 
   idProduct:WritableSignal<string | null> = signal("")
 
@@ -57,7 +59,7 @@ export class EditproductadminComponent   implements OnInit {
 
     if (this.EditProductForm.valid) {
 
-this._AllproductsService.updateProduct(this.idProduct() , this.EditProductForm.value  ).subscribe({
+this._AllproductsService.updateProduct(this.idProduct() , this.EditProductForm.value  ).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
   next:(res)=>{
     // console.log(res);
 

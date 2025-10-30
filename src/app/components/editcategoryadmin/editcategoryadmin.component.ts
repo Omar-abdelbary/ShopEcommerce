@@ -1,10 +1,11 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CategoriesService } from '../../core/services/categories.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-editcategoryadmin',
@@ -24,6 +25,7 @@ export class EditcategoryadminComponent  implements OnInit {
   private readonly _FormBuilder = inject(FormBuilder) ;
   private readonly _Router = inject(Router) ;
   private readonly _ActivatedRoute = inject(ActivatedRoute) ;
+  private readonly _DestroyRef = inject(DestroyRef) ;
 
   CategoryId :WritableSignal<string | null> = signal("")
 
@@ -55,7 +57,7 @@ export class EditcategoryadminComponent  implements OnInit {
 
     if (this.EditCategoryForm.valid) {
 
-      this._CategoriesService.UpdateCategory(this.CategoryId() , this.EditCategoryForm.value).subscribe({
+      this._CategoriesService.UpdateCategory(this.CategoryId() , this.EditCategoryForm.value).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
         next:(res)=>{
           // console.log(res);
 

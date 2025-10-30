@@ -1,6 +1,7 @@
 import { Iproduct } from './../../core/interfaces/iproduct';
 import {
   Component,
+  DestroyRef,
   inject,
   OnInit,
   PLATFORM_ID,
@@ -17,6 +18,7 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { ReviewService } from '../../core/services/review.service';
 import { Ireview } from '../../core/interfaces/ireview';
 import Swal from 'sweetalert2';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-viewproduct',
@@ -26,6 +28,10 @@ import Swal from 'sweetalert2';
   styleUrl: './viewproduct.component.css',
 })
 export class ViewproductComponent implements OnInit {
+
+
+
+
   // owl carousel
   customOptions: OwlOptions = {
     loop: true,
@@ -56,6 +62,7 @@ export class ViewproductComponent implements OnInit {
     nav: false,
   };
 
+  private readonly _DestroyRef = inject(DestroyRef) ;
   private readonly _PLATFORM_ID = inject(PLATFORM_ID) ;
   private readonly _ReviewService = inject(ReviewService);
   private readonly _Router = inject(Router); // سيرفس للراوتر للتعامل مع التنقل برمجي للكمبوننت تاني
@@ -77,7 +84,7 @@ export class ViewproductComponent implements OnInit {
         this.ProductId.set(p.get('id'));
         // console.log(this.ProductId());
 
-        this._AllproductsService.getProductById(this.ProductId()).subscribe({
+        this._AllproductsService.getProductById(this.ProductId()).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
           next: (res) => {
             // console.log(res);
 
@@ -102,7 +109,7 @@ export class ViewproductComponent implements OnInit {
 
 
         // get all review items
-        this._ReviewService.getAllReviewProduct(this.ProductId()).subscribe({
+        this._ReviewService.getAllReviewProduct(this.ProductId()).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
           next:(res)=>{
             // console.log(res);
             this.AllReview.set(res.data) ;

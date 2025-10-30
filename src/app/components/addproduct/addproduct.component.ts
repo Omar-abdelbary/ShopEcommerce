@@ -1,10 +1,11 @@
 import { NgClass } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AllproductsService } from '../../core/services/allproducts.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-addproduct',
@@ -20,6 +21,7 @@ export class AddproductComponent {
   private readonly _AllproductsService = inject(AllproductsService) ;
   private readonly _Router = inject(Router) ;
   private readonly  _ToastrService = inject(ToastrService) ;
+  private readonly _DestroyRef = inject(DestroyRef) ;
 
 
 
@@ -40,7 +42,7 @@ export class AddproductComponent {
 
     if (this.AddProductForm.valid) {
 
-      this._AllproductsService.addProduct(this.AddProductForm.value).subscribe({
+      this._AllproductsService.addProduct(this.AddProductForm.value).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
         next:(res)=>{
           // console.log(res);
 

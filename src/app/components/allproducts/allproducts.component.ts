@@ -1,5 +1,6 @@
 import {
   Component,
+  DestroyRef,
   inject,
   OnInit,
   signal,
@@ -16,6 +17,7 @@ import { log } from 'console';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../core/services/cart.service';
 import { PaginatorModule } from 'primeng/paginator';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-allproducts',
@@ -29,6 +31,7 @@ export class AllproductsComponent implements OnInit {
   private readonly _WishlistService = inject(WishlistService);
   private readonly _ToastrService = inject(ToastrService);
   private readonly _CartService = inject(CartService);
+  private readonly _DestroyRef = inject(DestroyRef) ;
 
   Allproducts: WritableSignal<Iproduct[] | null> = signal(null);
 
@@ -58,7 +61,7 @@ export class AllproductsComponent implements OnInit {
   }
 
   getAllProducts(page: number, limit: number) {
-    this._AllproductsService.getAllProduct(page, limit).subscribe({
+    this._AllproductsService.getAllProduct(page, limit).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res: any) => {
         this.Allproducts.set(res.data);
         this.totalItems.set(res.total_items);
@@ -88,7 +91,7 @@ export class AllproductsComponent implements OnInit {
   }
 
   getTotalCount() {
-    this._AllproductsService.getAllProductCount().subscribe({
+    this._AllproductsService.getAllProductCount().pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res: any) => {
         // نستخدم البيانات الجاية من السيرفر مباشرة
         this.totalItems.set(res.total_products);
@@ -100,7 +103,7 @@ export class AllproductsComponent implements OnInit {
 
   //  add product to wishlist
   addWishlist(product_id: string | number) {
-    this._WishlistService.addWishlistItem(product_id).subscribe({
+    this._WishlistService.addWishlistItem(product_id).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         // console.log(res);
 
@@ -119,7 +122,7 @@ export class AllproductsComponent implements OnInit {
   // add item in the cart
 
   addItemCart(productId: string | number) {
-    this._CartService.addCart(productId).subscribe({
+    this._CartService.addCart(productId).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         // console.log(res);
 

@@ -1,10 +1,11 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CartService } from '../../core/services/cart.service';
 import { sign } from 'crypto';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Orderdetails } from '../../core/interfaces/orderdetails';
 import { DatePipe, NgClass, UpperCasePipe } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-receipt',
@@ -24,6 +25,7 @@ export class ReceiptComponent  implements OnInit {
 
   private readonly _ActivatedRoute = inject(ActivatedRoute) ;
   private readonly _CartService = inject(CartService) ;
+  private readonly _DestroyRef = inject(DestroyRef) ;
   orderId:WritableSignal<string|number | null> = signal(null) ;
   orderDetails:WritableSignal<Orderdetails | null> = signal(null)
 
@@ -37,7 +39,7 @@ export class ReceiptComponent  implements OnInit {
       this.orderId.set(id);
 
       if (id) {
-        this._CartService.orderDetails(id).subscribe({
+        this._CartService.orderDetails(id).pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
           next: (res) => {
             // console.log(res);
             this.orderDetails.set(res.data) ;
@@ -46,7 +48,7 @@ export class ReceiptComponent  implements OnInit {
             console.log(err);
           },
         });
-      } 
+      }
     },
   });
 

@@ -1,5 +1,6 @@
 import {
   Component,
+  DestroyRef,
   inject,
   OnInit,
   signal,
@@ -9,6 +10,7 @@ import { SaleitemsService } from '../../core/services/saleitems.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Isaleitem } from '../../core/interfaces/isaleitem';
 import { CurrencyPipe } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-usersaleitem',
@@ -18,8 +20,12 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './usersaleitem.component.css',
 })
 export class UsersaleitemComponent implements OnInit {
-  private readonly _SaleitemsService = inject(SaleitemsService);
 
+
+
+
+  private readonly _SaleitemsService = inject(SaleitemsService);
+  private readonly _DestroyRef = inject(DestroyRef) ;
   AllItems: WritableSignal<Isaleitem[] | null> = signal(null);
 
 
@@ -32,7 +38,7 @@ export class UsersaleitemComponent implements OnInit {
 
 
 
-    this._SaleitemsService.getAllItemsSale().subscribe({
+    this._SaleitemsService.getAllItemsSale().pipe(takeUntilDestroyed(this._DestroyRef)).subscribe({
       next: (res) => {
         // console.log(res);
 
