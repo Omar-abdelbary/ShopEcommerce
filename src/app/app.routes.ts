@@ -29,6 +29,10 @@ import { authGuard } from './core/guards/auth.guard';
 
 
 export const routes: Routes = [
+
+
+
+  // layouts auth
   {path:"" , component: AuthComponent  , children:[
     {path:"" , redirectTo:"register" , pathMatch:"full" , title:"register"} ,
     {path:"register" , component : RegisteruserComponent , title:"register"} ,
@@ -39,6 +43,8 @@ export const routes: Routes = [
   ]} ,
 
 
+
+  // layouts user
   {path:"" , component: UserComponent , canActivate:[authGuard] ,  children:[
     {path:"" , redirectTo:"home" , pathMatch:"full" , title:"home"} ,
     {path:"home" , loadComponent:()=> import('./components/home/home.component').then( (c)=>c.HomeComponent) , title:"home"} ,
@@ -54,6 +60,8 @@ export const routes: Routes = [
     {path:"discountitems" , loadComponent:()=> import("./components/usersaleitem/usersaleitem.component").then( (c)=>c.UsersaleitemComponent) , title:"DiscountItems"} ,
   ]} ,
 
+
+  // layouts Admin
   {path: "" , component: AdminComponent , canActivate:[authGuard] , children:[
     {path:"" , redirectTo:"adminproducts" , pathMatch:"full" , title:"admin info"} ,
     {path:"adminproducts" , component:AdminproductsComponent , title:"AllProductsAdmin"} ,
@@ -70,6 +78,6 @@ export const routes: Routes = [
 
   ]} ,
 
-
+// notfound component
   {path:"**" , loadComponent:(()=> import("./components/notfound/notfound.component").then( (c)=>c.NotfoundComponent) ) , title:"notfound"}
 ];
